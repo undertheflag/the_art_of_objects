@@ -1,0 +1,22 @@
+# try to clean it up first
+removeperson John
+removeperson Mary
+
+addperson John 20
+addperson Mary 18
+
+addhobby John Biking
+addhobby John Swimming
+
+addhobby Mary Biking
+addhobby Mary Dancing
+
+showperson John
+showperson Mary
+
+removehobby Mary Dancing
+removeperson John
+
+showperson
+
+quit

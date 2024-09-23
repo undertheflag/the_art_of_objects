@@ -1,0 +1,56 @@
+// IDL code for the Catalog interface.  Attribute and Part are 
+// modeled as struct.  Thus they do not have any operations for
+// editing their data.
+
+#ifndef pdm_idl
+#define pdm_idl
+
+// Exposing objects in the persistent layer using the single exposure
+// approach.  All editing operations are for the catalog.  No fine
+// grained editing is provided for parts.
+
+module pdm {
+
+  exception PdmError { string message; };
+
+  struct Attribute {
+    string name;
+    double value;
+    string unit;
+  };
+
+  typedef sequence<Attribute> AttributeList;  // type definition
+
+  struct Part {
+    string name;
+    AttributeList attributes;
+    sequence<Part> components;  // recursive structure
+  };
+
+  typedef sequence<Part> PartList;
+
+  interface CatalogIF {
+
+    // get operations
+    string getName();      // name of the Catalog
+    PartList getParts( );  // a list of all parts
+    long getPartCount( );  // the number of parts
+
+    Part getPart(in string partName)
+      raises (PdmError);
+    boolean contains(in Part part);
+
+    // editing
+    Part addPart(in string partName, in AttributeList attributes,
+      in PartList components)
+      raises (PdmError);
+    void removePartByName(in string partName)
+      raises (PdmError);
+    void removePart(in Part part)
+      raises (PdmError);
+    void removeAllParts();
+  };
+
+};
+
+#endif // pdm_idl

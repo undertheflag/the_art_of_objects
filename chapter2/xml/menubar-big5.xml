@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="Big5" standalone="yes"?>
+<!-- Note: this XML file contains Chinese characters in Big5 encoding. -->
+<!-- It can be viewed with, for example, Internet Explorer 5. -->
+<MenuBar>
+  <Menu name="文件">
+    <MenuItem name="新建..." icon="new.gif" action="建立新文件"/>
+    <MenuItem name="打開..." icon="open.gif" action="打開舊文件"/>
+    <MenuItem name="存儲" icon="save.gif" action="存儲文件"/>
+    <MenuItem name="存為..." icon="saveAs.gif" action="存儲文件"/>
+    <MenuItem name="#Separator" />
+    <MenuItem name="退出" action="退出"/>
+  </Menu>
+  <Menu name="幫助">
+    <MenuItem name="索引" action="showIndex"/>
+    <MenuItem name="尋找" action="尋找幫助"/>
+    <MenuItem name="#Separator" />
+    <MenuItem name="關於" action="關於本軟件"/>
+  </Menu>
+</MenuBar>
+

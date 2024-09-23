@@ -1,0 +1,19 @@
+atmcs
+# admin password
+
+# bank info
+addbankinfo ABC_Bank 8888 ABC_Bank_Account_Manager
+addbankinfo My_Bank 9999 My_Bank_Account_Manager
+
+addatm 101 MC_Mall_A 9_Main_Street
+addatm 102 MC_Mall_B 7_Water_Street
+
+addcard 88881234 John 1234
+addcard 88881001 Jane 1001
+addcard 99993001 Jack 3001
+
+showbank
+showagent
+showcard
+
+quit

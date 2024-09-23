@@ -1,0 +1,47 @@
+//*************************************************************************
+/**
+ * Bank.idl - interface definition for a bank.
+ *   This is used as an object wrapper for a legacy bank system.
+ *
+ *   Copyright (C) 1998-2000 	Yun-Tung Lau
+ *   All Rights Reserved.  The contents of this file are proprietary to
+ *   the above copyright holder.
+ */
+//*************************************************************************
+
+module bank {
+
+  exception BankError {string message;};
+
+  struct AccInfo {
+    string name;
+    long number;
+    string passwd;
+  };
+
+  interface AccountIF {
+    // get operations
+    float getBalance();
+    AccInfo getAccInfo();
+    string getHistory();
+
+    // transactions.  The updated balance is returned afterwards.
+    float deposit(in float amount) raises (BankError);  
+    float withdraw(in float amount) raises (BankError);
+
+    float transferTo(in string accountName, in float amount)
+      raises (BankError);
+    float payBill(in string receiver, in float amount) raises (BankError);
+  };
+
+  interface AccountMgrIF {
+    AccountIF login(in AccInfo accInfo) raises (BankError);
+    void logout(in AccountIF account) raises (BankError);
+
+    AccountIF open(in AccInfo accInfo, in float initialAmount)
+      raises (BankError);
+    void remove(in AccInfo accInfo) raises (BankError);
+    string showAccounts();
+  };
+
+};

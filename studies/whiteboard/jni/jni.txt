@@ -1,0 +1,47 @@
+   jni.txt - Java Native Interface Description
+
+ImagePort.java	Contains the image data structure and declare native calls
+ImagePort.cpp   Contains the native methods that exchange data structure with
+		jni/ImagePort.java
+jni_ImagePort.h Generated from jni/ImagePort.java by javah
+
+ImagePort.mdp	Project file for MS visual C++
+ImagePort.mak	Makefile for generating libImagePort.so
+
+Nitf.cpp	A class for NITF file in/out including cgm
+Tiff.cpp	An image class with Tiff-like metadata
+tiff.h		used by Tiff.cpp
+
+ImagePort.dll   Dynamic link libraries for NT
+libImagePort.so Dynamic link libraries for Unix (not included)
+
+Other tools:
+
+NITFSjpegcmp - NITF JPEG Image Compression Tool.  It compresses 
+  the images inside an NITF file.  They are called by nitf/unpackimg.c
+  (For Solaris Unix)
+
+NITFSjpegdcmp - NITF JPEG Image De-compression Tool.  It de-compresses 
+  the images inside an NITF file.   They are called by nitf/unpackimg.c
+  (For Solaris Unix)
+
+-------------------------------------
+Other information for developers
+
+For native write(String) -
+
+Do nm libxxx.so | grep write, if you see:
+
+|FUNC |GLOB |0 |8 |Java_jni_ImagePort_write__FP7JNIEnv_P8_jobjectP8_jstring
+
+then you need extern "C" around the functions.  The correct line should be:
+
+|FUNC |GLOB |0    |8      |Java_jni_ImagePort_write
+
+If a symbol is undefined, it looks like:
+
+[308]   |         0|       0|NOTY |GLOB |0    |UNDEF  |write__4TiffPc
+[314]   |         0|       0|NOTY |GLOB |0    |UNDEF  |_._4Tiff
+[401]   |         0|       0|NOTY |GLOB |0    |UNDEF  |__4Tiffii
+
+

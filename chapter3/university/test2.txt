@@ -1,0 +1,26 @@
+# A capacity test that puts a lot of data into the database.
+# To run with these data, do:
+#    run test.odb test2.txt
+
+# clean it up first
+removeall
+
+# invoke the test
+test 1 10000
+
+quit
+
+# -------------------------------------------------------
+
+			Test Result
+
+			Size of DB file (b)
+
+1 Dept x 1 Course		522
+1 Dept x 1000 Course		50364	==> 50 b each course		
+1 Dept x 10000 Course		509364	==> 51 b each course		
+
+Note: There are a lot of repeated data inside test.odb.
+  One may effectively shrink the database size with zip.
+
+# -------------------------------------------------------

@@ -1,0 +1,10 @@
+Result from: mclient 10
+
+  The last client to finish yields:
+
+> >  New session opened for: John
+ Initial balance is $110003.22
+>  Current balance: $110003.22
+> >  New session opened for: Jane
+ Initial balance is $120051.4
+>  Current balance: $120051.4

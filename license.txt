@@ -1,0 +1,58 @@
+
+		      Copyright and License Statement
+
+		   Copyright (c) 1998-2001 Yun-Tung Lau
+
+Copyright in this document and the software accompanying this document is
+owned by Yun-Tung Lau.  All rights reserved.
+
+
+License
+
+Yun-Tung Lau grants you ("Licensee") a non-exclusive, royalty free,
+license to use, modify and redistribute this software in source and binary
+code form, provided that the software is used for educational purposes
+only.
+
+
+Exclusion and Disclaimer
+
+This software is provided "as is", without a warranty of any kind.  All
+express or implied conditions, representations and warranties, including
+any implied warranty of merchantability, fitness for a particular purpose
+or non-infringement, are hereby excluded.  Yun-Tung Lau shall not be
+liable for any damages suffered by licensee as a result of using,
+modifying or distributing the software or its derivatives. In no event
+will Yun-Tung Lau be liable for any lost revenue, profit or data, or for
+direct, indirect, special, consequential, incidental or punitive damages,
+however caused and regardless of the theory of liability, arising out of
+the use of or inability to use the software.
+
+This software is not designed for use in high risk activities requiring
+fail-safe performance.  In particular, this software is not designed or
+intended for use in on-line control of aircraft, air traffic, aircraft
+navigation or aircraft communications; or in the design, construction,
+operation or maintenance of any nuclear facility.  Yun-Tung Lau disclaims
+any express or implied warranty of fitness for high risk activities.
+Licensee represents and warrants that it will not use or redistribute the
+software for such purposes.
+
+
+Restricted Rights Legend
+
+The Licensed Software and documentation is a "commercial item," as defined in
+48 C.F.R. 2.101 (10/95), consisting of "commercial computer software" and
+"commercial computer software documentation," as defined in
+48 C.F.R. 12.212 (9/95).  Use, duplication, or disclosure by the U.S.
+Government is subject to the restrictions of U.S. GOVERNMENT END USERS
+consistent with 48 C.F.R. 12.212 and 48 C.F.R. 227.7202-1 through
+227.7202-4 (6/95).
+
+
+Trademarks
+
+Java and Enterprise JavaBeans are trademarks or registered trademarks of
+Sun Microsystems, Inc. in the United States and other countries.
+Netscape is a trademark of Netscape Communications Corporation. All
+other product names mentioned are the trademarks of their respective
+owners.

@@ -1,0 +1,37 @@
+
+		Studies 目錄內的文件說明
+
+apache-setup.txt
+	說明如何設置Apache JServ servlet engine(服務程序片機器)。
+
+Build.bat
+	編譯本目錄中服務程序片的批量處理文件。命令行格式為﹕
+		build.bat
+
+BuildAll.bat
+	編譯所有下層錄中源碼的批量處理文件。
+
+CleanAll.bat
+	清理所有目錄
+
+Counter.java 和.class
+	一個用來測試服務程序片機器的簡單例子。
+
+ooda.properties
+	Apache JServ servlet engine(服務程序片機器)的配置文件。
+	詳細情況請見文件apache-setup.txt。
+
+Repeat.exe 
+	一個在 Windows 運行的簡單工具﹐用來多次執行一個命令。
+	命令行格式為﹕
+		repeat N "命令   輸入變量..."
+
+	這裡N是一個整數。
+
+Studies.htm
+	在目錄studies之下源碼例子的說明網頁。
+
+Default.htm
+	源碼例子的首頁。
+
+

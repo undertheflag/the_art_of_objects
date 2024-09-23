@@ -1,0 +1,48 @@
+//*************************************************************************
+/**
+ * atmcs.idl - interface definition for the ATM Central Server.
+ *
+ *   Copyright (C) 1998-2000 	Yun-Tung Lau
+ *   All Rights Reserved.  The contents of this file are proprietary to
+ *   the above copyright holder.
+ */
+//*************************************************************************
+
+module atmcs {
+
+  exception AtmcsError {string message;};
+
+  struct CardInfo {
+    long number;
+    string name;
+    string passwd;
+  };
+
+  struct AccountInfo {
+    string name;
+    long number;
+  };
+
+  interface SessionIF {
+    // get operations
+    float getBalance();
+    AccountInfo getAccountInfo();
+    string getAccountHistory();
+
+    // transactions.  The updated balance is returned afterwards.
+    float deposit(in float amount) raises (AtmcsError);  
+    float withdraw(in float amount) raises (AtmcsError);
+
+    float transferTo(in string SessionName, in float amount)
+      raises (AtmcsError);
+    float payBill(in string receiver, in float amount) raises (AtmcsError);
+  };
+
+  interface SessionMgrIF {
+    SessionIF login(in CardInfo cardInfo, in string agentId) 
+      raises (AtmcsError);
+    void logout(in SessionIF Session) raises (AtmcsError);
+    string getAccountMgrNames();
+  };
+
+};

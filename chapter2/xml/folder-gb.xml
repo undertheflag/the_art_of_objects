@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="GB2312" standalone="yes"?>
+<!-- Note: this XML file contains Chinese characters in GB2312 encoding. -->
+<!-- It can be viewed with, for example, Internet Explorer 5. -->
+<Folder name="Java程序开发工具箱">
+  <File name="牌照" size="6100"/>
+  <File name="说明" size="49000"/>
+  <Folder name="bin">
+    <File name="java.exe" size="5120"/>
+    <File name="jre.exe" size="11200"/>
+  </Folder>
+  <Folder name="程序库">
+    <File name="classes.zip" size="879640100"/>
+  </Folder>
+</Folder>
+

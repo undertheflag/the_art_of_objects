@@ -1,0 +1,354 @@
+
+L:\ref\ooda-sample\chapter3>REM   Run tests in all sub directories 
+
+L:\ref\ooda-sample\chapter3>FOR /F %i IN ('dir /ad /b') DO cd %i   & del /Q test.od?   & run test.odb test1.txt   & cd ..  
+
+L:\ref\ooda-sample\chapter3>cd Person-Citizen   & del /Q test.od?   & run test.odb test1.txt   & cd ..  
+Usage: java DBRoot [database_file.odb] [command_file.txt]
+  If no database file is specified, run on transient objects.
+-----------------------------------------------
+Enter: command option1 option2 ...
+Valid commands
+  help                   // print this message
+  showperson [name]      // show one or all person(s)
+  addperson name age	   // add a person
+  addcitizen name age passportNumber	      // add a citizen
+  addresident name age nationality visaType // add a resident
+  removeperson name	   // remove the person
+
+  shutdown               // shutdown DB & quit
+-----------------------------------------------
+
+> > No such person: John
+> No such person: Mary
+> No such person: Kong
+> > > > > >  Name: John
+Age: 20
+
+>  Name: Mary
+Age: 18
+  passport: 32009999
+
+>  Name: Kong
+Age: 35
+  nationality: Vietnam, visa type: F-1
+
+> > > >  Name: Mary
+Age: 18
+  passport: 32009999
+
+ Name: Kong
+Age: 35
+  nationality: Vietnam, visa type: F-1
+
+> > L:\ref\ooda-sample\chapter3>cd Person-Hobby   & del /Q test.od?   & run test.odb test1.txt   & cd ..  
+
+L:\ref\ooda-sample\chapter3\Person-Hobby>java DBRoot test.odb test1.txt 
+Usage: java DBRoot [database_file.odb] [command_file.txt]
+  If no database file is specified, run on transient objects.
+-----------------------------------------------
+Enter: command argument1 argument2 ...
+Valid commands
+  help                   // print this message
+  showperson [name]      // show one or all person(s)
+  addperson name age     // add a person
+  addhobby name hobby    // add a hobby to the person
+  removeperson name      // remove the person
+  removehobby name hobby // remove the hobby from the person
+  removeall              // remove all persons
+
+  quit                   // shutdown DB & quit
+-----------------------------------------------
+
+> > No such person: John
+> No such person: Mary
+> > > > > > > > > > >  Name: John
+Age: 20
+Hobbies:
+  Biking (John)
+  Swimming (John)
+
+>  Name: Mary
+Age: 18
+Hobbies:
+  Biking (Mary)
+  Dancing (Mary)
+
+> > > > >  Name: Mary
+Age: 18
+Hobbies:
+  Biking (Mary)
+
+> > 
+L:\ref\ooda-sample\chapter3>cd University   & del /Q test.od?   & run test.odb test1.txt   & cd ..  
+
+L:\ref\ooda-sample\chapter3\University>java University test.odb test1.txt 
+Usage: java University [database_file] [command_file.txt]
+  If no database file is specified, run on transient objects.
+-----------------------------------------------
+Enter: command option1 option2 ...
+Valid commands
+  help                     // print this message
+  show [department|campus|all] // show department / campus
+  adddepartment name       // add a department
+  addcourse name dept      // add a course to the department
+  addinstructor name dept  // add an instructor to the department
+  addcampus name           // add a campus to the department
+  addclassroom name campus // add a classroom to the campus
+  addsession name course schedule classroom instructor1 [instructor2]
+                           // add a session to a course
+  removedepartment name      // remove the department
+  removecourse name dept     // remove a course from department
+  removeinstructor name dept // remove an instructor from department
+  removecampus name          // remove the campus from the department
+  removeclassroom name campus// remove a classroom from campus
+  removesession name course  // remove the session under the course
+  removeall                  // remove all campuses & departments
+
+  test nDept nCourse         // a test to add departments & course
+  quit                       // shutdown DB & quit
+-----------------------------------------------
+
+> > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > Department: Physics
+  Courses in Physics department:
+    Physics-101
+      Sessions:
+        Session: 1081
+          Schedule: M1-2&Th2-3
+          Classroom: C-A31
+          Instructor 1: John
+          Instructor 2: Jack
+    Physics-201
+      Sessions:
+        Session: 2081
+          Schedule: W1-2&F2-3
+          Classroom: C-A31
+          Instructor 1: John
+          Instructor 2: Jack
+    Physics-301
+      Sessions:
+        Session: 3081
+          Schedule: T1-3
+          Classroom: C-P03
+          Instructor 1: Jack
+  Instructors in Physics department:
+    John
+      Sessions:
+        Session: 1081
+          Course: Physics-101
+          Schedule: M1-2&Th2-3
+          Classroom: C-A31
+        Session: 2081
+          Course: Physics-201
+          Schedule: W1-2&F2-3
+          Classroom: C-A31
+    Jack
+      Sessions:
+        Session: 1081
+          Course: Physics-101
+          Schedule: M1-2&Th2-3
+          Classroom: C-A31
+        Session: 2081
+          Course: Physics-201
+          Schedule: W1-2&F2-3
+          Classroom: C-A31
+        Session: 3081
+          Course: Physics-301
+          Schedule: T1-3
+          Classroom: C-P03
+
+Department: Math
+  Courses in Math department:
+    Math-102
+      Sessions:
+        Session: 7031
+          Schedule: T10-12
+          Classroom: D-102
+          Instructor 1: Mary
+        Session: 7032
+          Schedule: Th10-12
+          Classroom: D-102
+          Instructor 1: Mary
+  Instructors in Math department:
+    Mary
+      Sessions:
+        Session: 7031
+          Course: Math-102
+          Schedule: T10-12
+          Classroom: D-102
+        Session: 7032
+          Course: Math-102
+          Schedule: Th10-12
+          Classroom: D-102
+
+Department: Drama
+  Courses in Drama department:
+    Drama-201
+      Sessions:
+        Session: 2231
+          Schedule: W9-11
+          Classroom: S-904
+          Instructor 1: Jane
+    Drama-401
+      Sessions:
+        Session: 4231
+          Schedule: F9-11
+          Classroom: S-904
+          Instructor 1: Jane
+  Instructors in Drama department:
+    Jane
+      Sessions:
+        Session: 2231
+          Course: Drama-201
+          Schedule: W9-11
+          Classroom: S-904
+        Session: 4231
+          Course: Drama-401
+          Schedule: F9-11
+          Classroom: S-904
+
+Department: English
+  Courses in English department:
+    English-101
+      Sessions:
+        Session: 3031
+          Schedule: W3-5
+          Classroom: T-234
+          Instructor 1: Tom
+    English-201
+      Sessions:
+        Session: 4031
+          Schedule: W3-5
+          Classroom: T-236
+          Instructor 1: Tony
+  Instructors in English department:
+    Tom
+      Sessions:
+        Session: 3031
+          Course: English-101
+          Schedule: W3-5
+          Classroom: T-234
+    Tony
+      Sessions:
+        Session: 4031
+          Course: English-201
+          Schedule: W3-5
+          Classroom: T-236
+
+  Campus: College-Park
+    Classrooms:
+      C-W68
+        Sessions:
+      C-A31
+        Sessions:
+        Session: 1081
+          Course: Physics-101
+          Schedule: M1-2&Th2-3
+          Instructor 1: John
+          Instructor 2: Jack
+        Session: 2081
+          Course: Physics-201
+          Schedule: W1-2&F2-3
+          Instructor 1: John
+          Instructor 2: Jack
+      C-P03
+        Sessions:
+        Session: 3081
+          Course: Physics-301
+          Schedule: T1-3
+          Instructor 1: Jack
+
+  Campus: Shady-Grove
+    Classrooms:
+      S-902
+        Sessions:
+      S-904
+        Sessions:
+        Session: 2231
+          Course: Drama-201
+          Schedule: W9-11
+          Instructor 1: Jane
+        Session: 4231
+          Course: Drama-401
+          Schedule: F9-11
+          Instructor 1: Jane
+
+  Campus: Towson
+    Classrooms:
+      T-234
+        Sessions:
+        Session: 3031
+          Course: English-101
+          Schedule: W3-5
+          Instructor 1: Tom
+      T-236
+        Sessions:
+        Session: 4031
+          Course: English-201
+          Schedule: W3-5
+          Instructor 1: Tony
+
+  Campus: DC
+    Classrooms:
+      D-102
+        Sessions:
+        Session: 7031
+          Course: Math-102
+          Schedule: T10-12
+          Instructor 1: Mary
+        Session: 7032
+          Course: Math-102
+          Schedule: Th10-12
+          Instructor 1: Mary
+
+--------------------
+> > Department: Physics
+  Courses in Physics department:
+    Physics-101
+      Sessions:
+        Session: 1081
+          Schedule: M1-2&Th2-3
+          Classroom: C-A31
+          Instructor 1: John
+          Instructor 2: Jack
+    Physics-201
+      Sessions:
+        Session: 2081
+          Schedule: W1-2&F2-3
+          Classroom: C-A31
+          Instructor 1: John
+          Instructor 2: Jack
+    Physics-301
+      Sessions:
+        Session: 3081
+          Schedule: T1-3
+          Classroom: C-P03
+          Instructor 1: Jack
+  Instructors in Physics department:
+    John
+      Sessions:
+        Session: 1081
+          Course: Physics-101
+          Schedule: M1-2&Th2-3
+          Classroom: C-A31
+        Session: 2081
+          Course: Physics-201
+          Schedule: W1-2&F2-3
+          Classroom: C-A31
+    Jack
+      Sessions:
+        Session: 1081
+          Course: Physics-101
+          Schedule: M1-2&Th2-3
+          Classroom: C-A31
+        Session: 2081
+          Course: Physics-201
+          Schedule: W1-2&F2-3
+          Classroom: C-A31
+        Session: 3081
+          Course: Physics-301
+          Schedule: T1-3
+          Classroom: C-P03
+
+--------------------
+> > 

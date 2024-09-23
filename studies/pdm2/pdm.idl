@@ -1,0 +1,171 @@
+//*************************************************************************
+//
+// pdm.idl - IDL for the Catalog interface.  Attribute and Part are 
+// modeled as interfaces here.  Thus they have operations for
+// editing their data.  We also keep the struct's for Attribute
+// and Part for the "deep" operations.  The data struct's are 
+// called AttributeData and PartData.
+//
+// "Shallow" operations are good for navigation, whereas "deep" operations
+// are efficient for one-time transfer of all relevant data (the
+// client makes only a single call to the server).
+//
+// Some operations can be shallow or deep, depending on the input 
+// arguments.
+//
+// We handle only double type attributes for now.
+//
+//   Copyright (C) 1998-2000 	Yun-Tung Lau
+//   All Rights Reserved.  The contents of this file are proprietary to
+//   the above copyright holder.
+//
+//*************************************************************************
+
+#ifndef pdm_idl
+#define pdm_idl
+
+// Exposing objects in the persistent layer using the full exposure
+// approach.
+
+module pdm {
+
+  exception PdmError { string message; };
+
+  // Data struct's are for "deep" operations
+  struct AttributeData {
+    string name;
+    double value;
+    string unit;
+  };
+
+  typedef sequence<AttributeData> AttributeDataList;  // type definition
+
+  struct PartData {
+    string name;
+    AttributeDataList attributes;
+    sequence<PartData> components;  // recursive structure
+  };
+
+  typedef sequence<PartData> PartDataList;
+
+  // list of interfaces and their sequences
+  interface CatalogIF;
+  interface PartIF;
+  interface AttributeIF;
+
+  typedef sequence<PartIF> PartIFList;
+  typedef sequence<AttributeIF> AttributeIFList;
+
+ 
+  interface CatalogIF {
+
+    // get operations
+    string getName();          // name of the Catalog
+    long getPartCount( );      // the number of parts
+
+    PartIFList getParts( );        // get all parts (shallow get)
+    PartDataList getPartDatas( );  // get all parts (deep get)
+
+    PartIF getPart(in string partName)       // shallow get
+      raises (PdmError);
+    PartData getPartData(in string partName) // deep get
+      raises (PdmError);
+
+    boolean contains(in PartIF part);
+
+    // editing
+    void setName(in string name);    // set the name
+
+    PartIF addPart(in string partName,  // add part with name
+      in AttributeDataList attributes,  // (attributes for shallow add)
+      in PartDataList components)       // (deep add if components not null)
+      raises (PdmError);
+      // note that we return the interface object reference instead of
+      // PartData, since the client should already have all the data.
+
+    void removePartByName(in string partName)
+      raises (PdmError);
+    void removePart(in PartIF partIF)
+      raises (PdmError);
+    void removeAllParts();
+  };
+
+
+  interface PartIF {
+
+    string getName();               // name of the Part
+    void setName(in string name);   // set the name
+
+    // ------<< Components >>---------
+    // get operations
+
+    long getComponentCount( );         // number of Components
+
+    PartIFList getComponents( );       // get all Components (shallow get)
+    PartDataList getComponentDatas( ); // get all Components (deep get)
+
+    PartIF getComponent(in string name)       // shallow get
+      raises (PdmError);
+    PartData getComponentData(in string name) // deep get
+      raises (PdmError);
+
+    boolean containsComponent(in PartIF component);
+
+    // editing
+    PartIF addComponent(in string name, // add a component
+      in AttributeDataList attributes,  // (shallow add if components is null)
+      in PartDataList components)       // (deep add if components not null)
+      raises (PdmError);
+      // note that we return the interface object reference instead of
+      // PartData, since the client should already have all the data.
+
+    void removeComponentByName(in string name)
+      raises (PdmError);
+    void removeComponent(in PartIF component)
+      raises (PdmError);
+    void removeAllComponents();
+
+    // ------<< Attributes >>---------
+    // get operations
+    long getAttributeCount( );        // number of Attributes
+
+    AttributeIFList getAttributes( );       // get all Attributes (shallow)
+    AttributeDataList getAttributeDatas( ); // get all AttributeDatas (deep)
+
+    AttributeIF getAttribute(in string name)        // shallow get
+      raises (PdmError);
+    AttributeData getAttributeData(in string name)  // deep get
+      raises (PdmError);
+
+    boolean containsAttribute(in AttributeIF attr);
+
+    // editing
+    AttributeIF addAttribute(in string name,        // add an attribute
+      in double value, 
+      in string unit)
+      raises (PdmError);
+
+    void removeAttributeByName(in string name)
+      raises (PdmError);
+    void removeAttribute(in AttributeIF attributeIF)
+      raises (PdmError);
+    void removeAllAttributes();
+  };
+
+
+  interface AttributeIF {
+
+    // get operations
+    string getName();
+    double getValue();
+    string getUnit();
+
+    // editing
+    void setName(in string name);    // set the name
+    void setValue(in double value);  // set the value
+    void setUnit(in string unit);    // set the unit
+
+  };
+};
+
+#endif // pdm_idl

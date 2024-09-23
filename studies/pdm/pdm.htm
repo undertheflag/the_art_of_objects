@@ -1,0 +1,86 @@
+<HTML> 
+<title>Pdm Demo</title> 
+
+<SCRIPT>
+  function process(i) {
+    var applet = document.pdm;
+
+    if (i == 1) applet.execute("getRootPartName", "");
+    if (i == 2) applet.execute("getParts", "");
+    if (i == 3) applet.execute("getPart", document.pdmForm.textIn.value);
+    if (i == 4) applet.execute("addPart", document.pdmForm.textIn.value);
+
+    scrollToEnd(); 
+  }
+
+  // scroll the text area to the end
+  function scrollToEnd() {
+    var a = document.pdmForm.console;
+    a.focus();
+    a.select();
+    a.blur();
+  }
+</SCRIPT>
+
+
+<center> <h1>Pdm Demo</h1>
+
+<p> 
+
+<!-- Need to use archive="vbjorb.jar,pdm.jar" if vbjorb.jar is not in
+     the Netscape Plugins dir.
+
+ You may turn on debugging by setting debug = 1 below.
+ -->
+
+<applet name="pdm" archive="pdm.jar" 
+  code="PdmApplet.class" width=400 height=20 MAYSCRIPT> 
+  <param name="debug" value="0">
+  <param name=org.omg.CORBA.ORBClass value=com.visigenic.vbroker.orb.ORB>
+  <param name=org.omg.CORBA.ORBSingletonClass value=com.visigenic.vbroker.orb.ORB> 
+</applet> 
+
+<FORM NAME="pdmForm" action="pdm.htm">
+
+<P>
+Host: 
+<INPUT TYPE="text" SIZE="20" NAME="host" value="localhost" 
+  onFocus="select()">
+<INPUT TYPE="button" VALUE="Connect"
+  onClick="document.pdm.connect(document.pdmForm.host.value)">
+
+<P>
+
+<textarea name="console" rows=8 cols=42 wrap="virtual">
+</textarea>
+<P>
+
+<SELECT onChange="process(this.options.selectedIndex)">
+  <OPTION>select action here
+  <OPTION>get root part name
+  <OPTION>get all parts
+  <OPTION>get part of name:
+  <OPTION>add a part of name:
+</SELECT>
+<INPUT TYPE="text" SIZE="15" NAME="textIn" value="electronics" 
+  onFocus="select()">
+
+</FORM>
+
+<TABLE WIDTH=60%>
+<TR><TD>
+<PRE>
+Note: If the applet fails to connect to the PDM Server.  You may 
+try "http://&lt;actual_IP_address&gt;/ooda/pdm/pdm.htm".  Your network
+setting may translate localhost into your machine's actual name,
+in which case the applet thinks it is connecting to a different
+machine and throws a security exception.
+</PRE>
+</TD></TR>
+</TABLE>
+
+</CENTER> 
+
+
+</HTML>
+

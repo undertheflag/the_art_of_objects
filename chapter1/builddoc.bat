@@ -1,0 +1,2 @@
+if not exist ..\docs\Chapter1 mkdir ..\docs\Chapter1
+javadoc -d ..\docs\Chapter1 Trade\*.java Person-Hobby\*.java Polygon-Point\Polygon.java Car-Part\*.java Circle-Point\*.java Person-User\User.java Committee\Committee.java Committee\Year.java

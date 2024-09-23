@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="GB2312" standalone="yes"?>
+<!-- Note: this XML file contains Chinese characters in GB2312 encoding. -->
+<!-- It can be viewed with, for example, Internet Explorer 5. -->
+<MenuBar>
+  <Menu name="文件">
+    <MenuItem name="新建..." icon="new.gif" action="建立新文件"/>
+    <MenuItem name="打开..." icon="open.gif" action="打开旧文件"/>
+    <MenuItem name="存储" icon="save.gif" action="存储文件"/>
+    <MenuItem name="存为..." icon="saveAs.gif" action="存储文件"/>
+    <MenuItem name="#Separator" />
+    <MenuItem name="退出" action="退出"/>
+  </Menu>
+  <Menu name="帮助">
+    <MenuItem name="索引" action="showIndex"/>
+    <MenuItem name="寻找" action="寻找帮助"/>
+    <MenuItem name="#Separator" />
+    <MenuItem name="关于" action="关于本软件"/>
+  </Menu>
+</MenuBar>
+

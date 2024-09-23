@@ -1,0 +1,24 @@
+<?xml version="1.0" standalone="yes"?>
+<Catalog name="electronics">
+ <Part name="resistorList">
+  <Part name="resistor">
+    <Attribute name="partNumber" value="123" unit=""/>
+    <Attribute name="resistance" value="5.6" unit="Ohm"/>
+    <Attribute name="power" value="0.1" unit="W"/>
+    <Attribute name="length" value="12" unit="mm"/>
+  </Part>
+  <Part name="resistor">
+    <Attribute name="partNumber" value="323" unit=""/>
+    <Attribute name="resistance" value="12.6" unit="Ohm"/>
+    <Attribute name="power" value="0.2" unit="W"/>
+    <Attribute name="length" value="16" unit="mm"/>
+  </Part>
+ </Part>
+ <Part name="capacitorList">
+  <Part name="capacitor">
+    <Attribute name="partNumber" value="13" unit=""/>
+    <Attribute name="capacitance" value="12.5" unit="F"/>
+    <Attribute name="voltage" value="30" unit="V"/>
+  </Part>
+ </Part>
+</Catalog>

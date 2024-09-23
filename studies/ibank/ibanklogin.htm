@@ -1,0 +1,160 @@
+<HTML>
+<HEAD>
+ <TITLE>iBank Login</TITLE>
+ <script language=JavaScript>
+  <!--
+  function checkFocus() {  // direct focus to username input
+   if (document.forms[0].username) {
+    if (!document.forms[0].username.value) {
+     document.forms[0].username.focus();
+    }
+   }
+  }
+  // -->
+ </script>
+</head>
+
+<body link=#006633 vlink=#006633 alink=#009966 onload="checkFocus()">
+ <script language=JavaScript>
+  <!--
+  if ( (navigator.userAgent.indexOf('MSIE') != -1) && (navigator.appVersion.charAt(0) == '2') ) 
+   document.writeln("<table width=600 border=0 cellpadding=0 cellspacing=0>");
+  else
+   document.writeln("<table border=0 cellpadding=0 cellspacing=0>");
+  // -->
+ </script>
+
+ <noscript>
+  <table border=0 cellpadding=0 cellspacing=0>
+ </noscript>
+ 
+ <tr>
+  <td colspan=4>
+   <b><font color=red size=2 face="Arial,Helvetica">
+    <script language=JavaScript>
+     <!--
+     if (document.cookie.length == 0) {
+     //  document.writeln("It appears that 'cookies' are disabled in your browser.<br>In order to login, you must have cookies enabled.<br>Click <a href=cookieInfo.htm>here</a> for information."); 
+     }
+     // -->
+    </script>
+
+    <noscript>
+    STOP! Your current browser does not have JavaScript enabled or you are
+    using a browser that does not support JavaScript.  In order to benefit
+    from all available online tools you will need to enable JavaScript.
+    Click <a href=js-info.htm>here</a> for information.
+    </noscript>
+
+   </font></b>
+  </td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td valign=top>
+
+   <FORM METHOD=POST ACTION="/OODA/ibank.Main">
+   <INPUT TYPE=HIDDEN NAME="_c" VALUE="login">
+
+   <table border=0 cellpadding=0 cellspacing=0 bgcolor=#CCCCCC>
+   <tr>
+    <td align=center colspan=7 bgcolor=#333388>
+     <table border=0 cellpadding=0 bgcolor=#333388>
+       <tr>
+         <td><font color=#FFFFFF size=2 face="Arial,Helvetica">
+	 <b>iBank Login</b></font></td>
+       </tr>
+     </table>
+    </td>
+   </tr>
+   <tr>
+    <td width=20>&nbsp;</td>
+    <td colspan=5><font size=1 face="Arial,Helvetica"><br> 
+    Please enter your username and password.</font></td>
+    <td width=20>&nbsp;</td>
+   </tr>
+   <tr>
+    <td colspan=7>&nbsp;</td>
+   </tr>
+   <tr>
+    <td>&nbsp;</td>
+    <td><font size=1 face="Arial,Helvetica">username</font></td>
+    <td width=8>&nbsp;</td>
+    <td><font face="Arial,Helvetica">
+    <input type=text size=14 maxlength=11 name=username></font></td>
+    <td colspan=3>&nbsp;</td>
+   </tr>
+   <tr>
+    <td colspan=7>&nbsp;</td>
+   </tr>
+   <tr>
+    <td>&nbsp;</td>
+    <td><font size=1 face="Arial,Helvetica">password</font></td>
+    <td>&nbsp;</td>
+    <td><font face="Arial,Helvetica">
+    <input type=password size=14 maxlength=12 name=password></font></td>
+    <td width=8>&nbsp;</td>
+    <td align=right><font size=1 face="Arial,Helvetica">
+    <input type=submit name=Login value="&nbsp;&nbsp;Login&nbsp;&nbsp;"></font></td>
+    <td>&nbsp;</td>
+   </tr>
+   <tr>
+    <td colspan=7>&nbsp;</td>
+   </tr>
+   </table>
+   </form>
+
+  <p>
+  <table border=0 cellpadding=0 cellspacing=0 width=300>
+   <tr>
+    <td>
+     <p>
+<font size=-1>
+
+<!--
+Use of this site involves the electronic transmission of personal
+information. Using this product is consent to such transmission
+of this information; such consent is effective at all times when using
+this site. 
+
+<P>
+<B>iBank</B> supports both 40-bit and 128-bit browser encryption. Usage of
+this online service constitutes agreement of the Electronic
+Services Customer Agreement and License Agreement.
+-->
+
+<P>
+Copyright <B>iBank</B> Corporation, 1999-2000.
+</font>
+
+    </td>
+   </tr>
+  </table>
+
+  </td>
+  <td width=50>&nbsp;</td>
+  <td valign=top>
+
+  <table border=0 cellpadding=0 cellspacing=0 width=210>
+   <tr><td valign=top><font size=2 face="Arial,Helvetica">
+   <a href="/OODA/ibank.Main?_c=showBanks" target=_top><b>
+   show available bank servers</b></a>
+   </font></td></tr>
+<!--
+   <tr><td valign=top><font size=2 face="Arial,Helvetica">
+   <a href="cookieInfo.htm" target=_top><b>
+   information about cookie</b></a>
+   </font></td></tr>
+
+   <tr><td valign=top><font size=2 face="Arial,Helvetica">
+   <a href="js-Info.htm" target=_top><b>
+   information about JavaScript</b></a>
+   </font></td></tr>
+-->
+  </table>
+  </td>
+ </tr>
+</table>
+
+</BODY>
+</HTML>

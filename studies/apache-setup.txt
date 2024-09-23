@@ -1,0 +1,99 @@
+
+      Setup Procedure for Apache Servlet Engine "JServ"
+
+The iBank example uses Apache web server and its servlet 
+engine JServ.  You need to download and install Apache 
+and JServ separately.  When installing JServ, you may
+point the jsdk path to the v.2.1 one in: Studies/classes/jsdk.jar
+under this package.  (The version 2.0 one required by
+JServ will not work properly though.  See 
+Studies/classes/readme.txt)
+
+The setup for JServ is given below.  Here %JServ% stands
+for the installation path of JServ (e.g. C:\Apache\JServ).
+It should be replaced with the actual path in the file.
+
+Also, we assume the sample code is located at
+C:/ooda-sample/Studies (which means you unzipped the
+package to C:/ooda-sample).  If you put the package in a 
+different path, you would need to use the actual path.
+
+Step 1. 
+
+  Modify the file C:/ooda-sample/Studies/ooda.properties 
+  so that the line:
+
+repositories=C:/ooda-sample/Studies/  
+
+  and 
+
+servlets.default.initArgs=wwwroot=C:/ooda-sample/Studies
+
+  reflects the actual path in your machine.
+
+ 
+Step 2. 
+
+  In the file %JServ%/conf/jserv.properties, add the lines below.
+
+  (Make sure you don't have empty lines between consecutive
+   wrapper.classpath= lines.  Also ensure the vbroker paths
+   point to the actual one.  All are case sensitive, make
+   sure your path names appear exactly as typed.)
+
+ooda.properties=C:/ooda-sample/Studies/ooda.properties
+
+# vbroker stuffs
+wrapper.classpath=E:\vbroker\lib\vbjorb.jar
+wrapper.classpath=E:\vbroker\lib\vbjapp.jar
+wrapper.classpath=E:\vbroker\lib\vbjtools.jar
+wrapper.classpath=E:\vbroker\lib\vbjcosnm.jar
+# ooda-sample specific
+wrapper.classpath=C:/ooda-sample/Studies/ibank/atmcs-i.jar
+wrapper.classpath=C:/ooda-sample/Studies/classes/regex.jar
+
+  and add ooda to 
+
+zones=root
+
+  to become
+
+zones=root,ooda
+
+
+Step 3. Mount OODA to the zone ooda and set up an alias by adding the following
+  lines near the end of the file %JServ%/conf/JServ.conf
+  (a few paragraphs before the line </IfModule> )
+
+ApJServMount /OODA /ooda
+Alias /ooda/ "C:/ooda-sample/Studies/"  <-- or other actual path in your machine
+
+   (Mount name and zone name must be different.  They are case sensitive.  
+    The strategy is to use uppercase name as mount name.  That way we can 
+    put .gif, .htm etc. files in the servlet repository directory.  
+    Servlets are accessed by /OODA/MyServlet, and regular files by 
+    /ooda/myfigure.gif)
+
+   (The alias for the repository directory must be different from mount name.
+    Note the trailing "/".  If it is missing, you won't be able to find anything
+    under it! The alias takes precedence over directory of same name under 
+    document root.)
+
+To bring up Apache Server, enter the following on a command line:
+
+  net start apache
+
+Note: you may need to stop it first with "net stop apache" if it
+is already running.
+
+Once the web server is running, you may enter the URL:
+
+  http://localhost/ooda/default.htm
+
+to reach the sample code home page.
+
+Trouble Shooting:
+  If you get "servlet /OODA/ibank.Main " not found.  It is probable
+  that one of the above directory settings is not right (including
+  the ones for the .jar files).
+

@@ -1,0 +1,4 @@
+# open some accounts
+open John 999
+open Jane 888
+open Jeff 777

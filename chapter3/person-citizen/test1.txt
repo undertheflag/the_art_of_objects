@@ -1,0 +1,18 @@
+# try to clean it up first
+removeperson John
+removeperson Mary
+removeperson Kong
+
+addperson John 20
+addcitizen Mary 18 032009999
+addresident Kong 35 Vietnam F-1 
+
+showperson John
+showperson Mary
+showperson Kong
+
+removeperson John
+
+showperson
+
+quit

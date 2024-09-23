@@ -1,0 +1,101 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Tung Lau">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (WinNT; U) [Netscape]">
+   <title>paybill</title>
+</head>
+
+<script>
+    // check whether item x contains a number
+    function isPositiveNum(x) {
+      var v = new Number(x.value);
+      if ( v.toString() == "NaN" ) {
+	alert( x.value + " is not a valid number!");
+	x.focus();
+	return false;
+      }
+      if ( v <= 0 ) {
+	alert( x.value + " is not positive!");
+	x.focus();
+	return false;
+      }
+      return true;
+    }
+
+  function isInputOK() {
+    var f = document.paybillform;
+    if (!isPositiveNum(f.payment)) return false;
+
+    if ( f.receiver.value == "" ) {
+	alert( "You must specify a receiver!");
+	f.receiver.focus();
+	return false;
+    }
+
+    return true;
+  }
+
+  function makePayment(){
+    var f = document.paybillform;
+    location.replace( '/OODA/ibank.Main?_a=Account&_c=pay&receiver='
+	+ f.receiver.value + '&amount='+ f.payment.value );
+  }
+
+  function logout() {
+    location='/OODA/ibank.Main?_c=logout';
+  }
+
+</script>
+
+<body>
+&nbsp;
+<p><form NAME="paybillform" ACTION="paybill.htm" METHOD="GET">
+<center><table BORDER=5 CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="65%" BGCOLOR="#CCFFFF" >
+<tr>
+<td ALIGN=CENTER><b><font color="#FF0000"><font size=+2>${bank name}</font></font></b>
+<hr SIZE=1>
+<center><table BORDER=0 CELLSPACING=8 COLS=4 WIDTH="100%" BGCOLOR="#CCFFFF" >
+<tr>
+<td><b>Account Name:</b></td>
+
+<td>${account name}</td>
+
+<td ALIGN=RIGHT NOWRAP WIDTH="40">Pay :&nbsp;</td>
+
+<td ALIGN=RIGHT NOWRAP BGCOLOR="#66FFFF">$&nbsp;<input TYPE="text" NAME="payment" SIZE=10
+  onChange="isPositiveNum(this)"></td>
+</tr>
+
+<tr>
+<td><b>Balance:</b></td>
+
+<td>$ ${balance}</td>
+
+<td ALIGN=RIGHT>To :&nbsp;</td>
+
+<td ALIGN=RIGHT NOWRAP BGCOLOR="#66FFFF"><input TYPE="text" NAME="receiver" SIZE=10></td>
+</tr>
+
+<tr>
+<td><a href="/OODA/ibank.Main?_a=Account&_c=history">History</a></td>
+
+<td><input type="button" value="Logout"
+  onClick="logout();"></td>
+
+<td>&nbsp;</td>
+
+<td ALIGN=RIGHT BGCOLOR="#66FFFF">
+<input type="button" value="Make Payment"
+  onClick="if (isInputOK()) makePayment()">
+</td>
+
+</tr>
+</table></center>
+</td>
+</tr>
+</table></center>
+</form>
+</body>
+</html>

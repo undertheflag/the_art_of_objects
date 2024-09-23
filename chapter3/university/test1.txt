@@ -1,0 +1,56 @@
+# Test data for University.  To run with these data, do:
+#    run test.odb test1.txt
+
+# clean it up first
+removeall
+
+addcampus College-Park
+addcampus Shady-Grove
+addcampus Towson
+addcampus DC
+
+addclassroom C-W68 College-Park
+addclassroom C-A31 College-Park
+addclassroom C-P03 College-Park
+addclassroom S-902 Shady-Grove
+addclassroom S-904 Shady-Grove
+addclassroom T-234 Towson
+addclassroom T-236 Towson
+addclassroom D-102 DC
+
+adddepartment Physics
+adddepartment Math
+adddepartment Drama
+adddepartment English
+
+addinstructor John Physics
+addinstructor Jack Physics
+addinstructor Mary Math
+addinstructor Jane Drama
+addinstructor Tom English
+addinstructor Tony English
+
+addcourse Physics-101 Physics
+addcourse Physics-201 Physics
+addcourse Physics-301 Physics
+addcourse Math-102 Math
+addcourse Drama-201 Drama
+addcourse Drama-401 Drama
+addcourse English-101 English
+addcourse English-201 English
+
+addsession 1081 Physics-101 M1-2&Th2-3 C-A31 John Jack
+addsession 2081 Physics-201 W1-2&F2-3  C-A31 John Jack
+addsession 3081 Physics-301 T1-3       C-P03 Jack
+addsession 7031 Math-102    T10-12     D-102 Mary
+addsession 7032 Math-102    Th10-12    D-102 Mary
+addsession 2231 Drama-201   W9-11      S-904 Jane
+addsession 4231 Drama-401   F9-11      S-904 Jane
+addsession 3031 English-101 W3-5       T-234 Tom 
+addsession 4031 English-201 W3-5       T-236 Tony
+
+show
+
+show Physics
+
+quit

@@ -1,0 +1,160 @@
+
+L:\ref\ooda-sample\chapter1>REM   Run tests in all sub directories 
+
+L:\ref\ooda-sample\chapter1>FOR /F %i IN ('dir /ad /b') DO if exist %i\run.bat cd %i   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter1>if exist Car-Part\run.bat cd Car-Part   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter1\Car-Part>java Car 
+Manufacturer: Honda
+Year: 1998
+Parts:
+  Oil Filter - 13    (used in: Honda 1998, Acura 1999)
+  Tire - 1023    (used in: Honda 1998, Acura 1999, Ford 2001)
+
+Manufacturer: Acura
+Year: 1999
+Parts:
+  Oil Filter - 13    (used in: Honda 1998, Acura 1999)
+  Tire - 1023    (used in: Honda 1998, Acura 1999, Ford 2001)
+  Navigation Monitor - 99023    (used in: Acura 1999, Ford 2001)
+
+Manufacturer: Ford
+Year: 2001
+Parts:
+  Tire - 1023    (used in: Honda 1998, Acura 1999, Ford 2001)
+  Navigation Monitor - 99023    (used in: Acura 1999, Ford 2001)
+
+
+
+L:\ref\ooda-sample\chapter1>if exist Circle-Point\run.bat cd Circle-Point   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter1\Circle-Point>java Circle 
+Circle: radius = 1.1; center at(0.4, 0.5)
+
+After move:
+Circle: radius = 1.1; center at(0.6000000000000001, 0.7)
+
+
+
+L:\ref\ooda-sample\chapter1>if exist Committee\run.bat cd Committee   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter1\Committee>java Committee 
+... Committees:
+Committee: Fund Raising Committee
+Posts:
+
+Committee: Ethnics Committee
+Posts:
+
+... Persons:
+Name: John
+Age: 20
+Posts:
+
+Name: Mary
+Age: 18
+Posts:
+
+Name: Tom
+Age: 60
+Posts:
+
+Name: Kathy
+Age: 65
+Posts:
+
+... after post assignments
+... Committees:
+Committee: Fund Raising Committee
+Posts:
+  John/2001  Mary/2001  Kathy/2001
+Committee: Ethnics Committee
+Posts:
+  Tom/2001  Tom/2002  Tom/2004  John/2001  Kathy/2001  Kathy/2003
+... Persons:
+Name: John
+Age: 20
+Posts:
+  Fund Raising Committee/2001  Ethnics Committee/2001
+Name: Mary
+Age: 18
+Posts:
+  Fund Raising Committee/2001
+Name: Tom
+Age: 60
+Posts:
+  Ethnics Committee/2001  Ethnics Committee/2002  Ethnics Committee/2004
+Name: Kathy
+Age: 65
+Posts:
+  Fund Raising Committee/2001  Ethnics Committee/2001  Ethnics Committee/2003
+
+
+L:\ref\ooda-sample\chapter1>if exist Person\run.bat cd Person   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter1\Person>java Person 
+Name: John
+Age: 20
+Name: Mary
+Age: 18
+
+... after changes
+John	21
+Mary Ann	19
+
+
+L:\ref\ooda-sample\chapter1>if exist Person-Hobby\run.bat cd Person-Hobby   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter1\Person-Hobby>java Person 
+Name: John
+Age: 20
+Hobbies:
+  Biking (John)
+  Swimming (John)
+
+Name: Mary
+Age: 18
+Hobbies:
+  Biking (Mary)
+  Dancing (Mary)
+
+
+
+L:\ref\ooda-sample\chapter1>if exist Person-User\run.bat cd Person-User   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter1\Person-User>java User 
+Name: John
+Age: 20
+Username: u-john
+Name: Mary
+Age: 18
+Username: u-mary
+
+... after changes
+John	u-john	21
+Mary Ann	u-mary	18
+
+>>> Expected exception ...
+Password validation failed!
+
+L:\ref\ooda-sample\chapter1>if exist Polygon-Point\run.bat cd Polygon-Point   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter1\Polygon-Point>java Polygon 
+Polygon with 5 points:
+  (0.0, 0.0)  (1.0, 0.0)  (0.8, 0.2)  (0.4, 0.5)  (0.2, 0.1)
+
+>>> Expected exception ...
+Invalid number of points!
+
+L:\ref\ooda-sample\chapter1>if exist Trade\run.bat cd Trade   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter1\Trade>java Trade 
+Product: soap
+Quantity: 10
+Total Price: 48.5
+
+Product: pen
+Quantity: 80
+Total Price: 23.76 (10.0% discount applied)
+

@@ -1,0 +1,158 @@
+______________________________________________________________________
+				     
+		       Whiteboard Development Notes
+			      Update: 1/2000
+______________________________________________________________________
+
+
+............. Subtasks to be completed for V. 1.1: ...................
+
+A certain port in a group may experience network problem during a
+collaboration session. The program should detect this (using _non_existent()) 
+and gracefully drops the port from the list or tries to reconnect to it. 
+
+The DrawCanvas should distinguish markups sent by remote ports from the
+ones drawn locally. This allows users to make markups locally while at
+the same time participate in the collaboration.
+
+Open associated cgm file when reading jpg, gif files.
+
+Bounding box for a group of glyphs - should be the outer box
+  instead of a small box ?
+
+Free hand drawing with polyline (Glyph.java, Drawcanvas.java)
+
+Polyline/Polygons, fill color option  (Glyph.java, Drawcanvas.java)
+
+Use Powerpoint style drawing control (Drawcanvas.java)
+  - chechbox group reset to pick button after mouse release
+  - pick button groups glyphs when dragged
+  - pick button moves the canvas when dragged with ctrl key
+  - cut and paste, copy with ctrl key
+  - paste - if a glyph already exists at the same location, shift the 
+    new one a bit
+
+Cursor change with function (move, resize, etc) (Drawcanvas.java)
+
+Set tighter heights for labels (TextLine.java)
+
+In hand mode, text input box shifted when the base image is shifted.
+
+ESC to remove visible label box (Drawcanvas.java)
+
+Resize + rotate glyphs (Glyph.java)
+
+Graphic layer edit protection (Drawcanvas.java)
+
+Multiple inset images (Drawcanvas.java, ImagePort)
+
+Arrows, North Arrows (Glyph.java)
+
+Predefined symbols (Glyph.java)
+
+Implement the key management with a partition tree  (Drawcanvas.java)
+
+Implement display level setting of NITF (Drawcanvas.java, ImagePort)
+
+Grouping of glyphs in a selected region (Drawcanvas.java)
+
+NITF compliance level enhancement (Nitf.cpp)
+ - B/W images
+ - synchronization code
+ - blocking for large images
+ - 12 bit images
+
+Import/Export images in multiple formats using ImageMagic with burned
+in overlays (Drawcanvas.java, ImagePort)
+
+Write/read NITF with Jpeg compression for PC (jpeg/)
+
+Graphic representation for lineWidth chooser (LineChooser)
+
+Enhance Java Cgm class to read in and interpret generic cgm files
+  - Turn on NITF font list in Cgm.java
+  - pass canvas size to VDC extent
+
+Nonpersistent overlays that won't be saved with files (like a thick arrow)
+(Drawcanvas.java)
+
+
+
+............. Subtasks completed after V. 1.0: ..................
+
+Synchronize requestLeadership in control object.  - YTLau
+Test the case of multiple leadership requests.  What if leadership
+is granted to others before the next request?
+
+Pop-up window for requesting leadership should time out in 5 seconds
+and automatically grants leadership.  This avoids the problem of 
+unattended port. - YTLau
+
+Enforece policy for granting leadership - YTLau
+
+Show list of ports before connect - YTLau
+
+Fix bug with read when dir got changed.  - YTLau
+  Files changed: Main.java
+
+Make it work for reading nitf files without base image   - YTLau
+  Files changed: DrawCanvas.java, Nitf.cpp, ImagePort.cpp
+
+In hand mode, select base image first before dragging - YTLau
+
+Pop up error message (Main.java) - YTLau
+
+Give info when file format not recognized, avoid core dump - YTLau
+
+
+............. Completed for V. 1.0: ..................
+
+Image format supported:
+ - Read: jpeg, gif, nitf (with or without base image), cgm
+ - Write: nitf (with base image), cgm
+
+V. 1.0 System design diagrams (wb.ppt) - YTLau
+V. 1.0 release package (bytecode) for Solaris & PC (wb1_0.zip) - YTLau
+
+Scrolling for large images (Drawcanvas.java) - YTLau
+  - done with push hand, not scroll bars!
+
+Cgm interpretor to current glyphs (Cgm.java) 
+Import cgm file option menu (Cgm.java/ Main) - YTLau
+
+Write/read NITF with cgm (Drawcanvas.java, ImagePort, Nitf.cpp)- YTLau
+
+Write/read NITF with Jpeg compression (jpeg)- YTLau
+
+Change attribute of selected glyphs (Drawcanvas.java) - YTLau
+  - color, lineWidth, font
+
+Export cgm file option menu (Cgm.java/ Main) - YTLau
+
+Do not refresh when moving (Drawcanvas.java) - YTLau
+  A dragging flag is added to control the image/glyph redraw.
+
+Do not automatically select another one after deleting one (Drawcanvas.java)
+  - YTLau
+
+Better graphic Image buttons (*.gif) - YTLau
+
+Line width 2 should not be the same as 1.  (Drawcanvas.java) - YTLau
+
+For label, use one click to get text box (Drawcanvas.java) - YTLau
+
+Limit fonts to those in NITF-CGM (Main.java) - YTLau
+
+Make move box more visible (Drawcanvas.java) - YTLau
+  Use background color as XORmode color.
+
+Initial defaults for lineWidth, font, etc not consistent with those
+display (Main.java) - YTLau
+
+Erase all includes the base image. - YTLau
+
+Tools converting glyphs to cgm (CgmTool.java) - YTLau
+  (Minor enhancement may be needed)
+
+======================================================================
+

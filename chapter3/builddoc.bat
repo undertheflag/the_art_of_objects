@@ -1,0 +1,2 @@
+if not exist ..\docs\Chapter3 mkdir ..\docs\Chapter3
+javadoc -d ..\docs\Chapter3 Person-Hobby\Person.java Person-Hobby\Hobby.java Person-Citizen\Citizen.java Person-Citizen\Resident.java Person-Citizen\DBManager.java University\*.java 

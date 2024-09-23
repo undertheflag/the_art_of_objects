@@ -1,0 +1,94 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.05 [en] (WinNT; U) [Netscape]">
+   <META HTTP-EQUIV="keywords" CONTENT="bank server">
+   <META NAME="Author" CONTENT="Yun-Tung Lau">
+   <TITLE>Readme for the ATM Central Server example</TITLE>
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="#990066" ALINK="#FF0000">
+
+<CENTER>
+<H2>
+<FONT COLOR="#3333FF">ATM Central Server - <I><FONT SIZE=+1>persistent
+layer</FONT></I></FONT></H2></CENTER>
+This is the persistent layer of the <B>ATM Central Server (atmcs).</B>&nbsp;
+The object design contains a binary association class (<B>Session</B>)
+in the center, surrounded with several collection managers.&nbsp; It is
+a straightforward implementation of the design in the Case Study: ATM System
+Software - Part 5 (also see exercise 7-4).&nbsp; This example demonstrates
+how to:
+<UL>
+<LI>
+Design persistent objects with a binary assocation class</LI>
+
+<LI>
+Implement persistent objects and database root</LI>
+
+<LI>
+Implement a simple terminal session with transaction blocks</LI>
+</UL>
+
+<H3>
+
+<HR WIDTH="80%"></H3>
+
+<H3>
+<FONT COLOR="#FF0000">Source Files</FONT></H3>
+
+<UL>
+<LI>
+<A HREF="ATMManager.java">ATMManager.java</A></LI>
+
+<BR>This is the database root of the persistent layer.&nbsp; It contains
+four collections of persistent objects (BankInfo, Session, Card, DailyLog)
+and a pretty standard set of management functions for the collections.
+
+<P>A static method runTerminal is used to run a console session for direct
+access to the database by an administrator (a login password "atmcs" is
+needed).
+
+<P>One may also run the code with an input text file that contains multiple
+command lines.&nbsp; An example is in <A HREF="bankData.txt">bankData.txt.</A>
+
+<P>To shutdown the program, type in "shutdown" from the console.&nbsp;<BR>
+<BR>
+<LI>
+<A HREF="cfpargs">cfpargs</A></LI>
+
+<BR>Lists all persistent enabled classes in this package.&nbsp; To be read
+by the post processor during the build process.<BR>
+<BR></UL>
+
+<H3>
+<FONT COLOR="#FF0000">Batch Files</FONT></H3>
+
+<UL>
+<LI>
+<FONT COLOR="#000099">build.bat</FONT></LI>
+
+<BR>A batch file for building the persistent classes.&nbsp; A subdirectory
+named "atmcs" will be created, which contains the class files.&nbsp; It
+invokes the post processor to make the classes persistent.
+<BR>It also builds a atmcs.jar file, which is used by the interface layer
+(<A HREF="../atmcs/index.htm">atmcs</A>).
+<BR>&nbsp;
+<LI>
+<FONT COLOR="#000099">run.bat</FONT></LI>
+
+<BR>A batch file for running the command line tool for administration.&nbsp;
+The command line format is:
+<PRE>&nbsp;&nbsp;&nbsp; run<TT> [database_file] [command.txt]</TT></PRE>
+If the optional database file name is present, it will create or open the
+file and all updates will be recorded in the database.&nbsp; In addition,
+an optional input command file such as <A HREF="bankData.txt">bankData.txt</A>
+can be used to issue commands.
+
+<P>If the database file name is not present, it simply performs the tasks
+on a set of transient objects.</UL>
+
+<HR WIDTH="100%">
+<BR>&nbsp;
+<BR>&nbsp;
+</BODY>
+</HTML>

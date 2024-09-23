@@ -1,0 +1,58 @@
+
+getname
+
+# remove all first and then build the list
+removeallparts
+
+addpart resistorList
+getpart resistorList
+
+addcomponent resistor1
+getcomponent resistor1
+
+addattribute partNumber 123 ""
+addattribute resistance 5.6 Ohm
+addattribute power 0.10 W
+addattribute length 12.0 mm
+getattributes
+
+addcomponent fake
+
+# try something not there
+getcomponent ABC
+
+removecomponent fake
+getcomponents
+
+# navigate back to top level
+getpart resistorList
+getparts
+
+addcomponent resistor2
+getcomponent resistor2
+addattribute partNumber 325 ""
+addattribute resistance 12.6 Ohm
+addattribute power 0.2 W
+addattribute length 16.0 mm
+
+# show the whole tree
+getpartdatas
+
+
+removeattribute power
+addattribute power_level 3 W
+
+getattribute power_level
+getattribute power
+getattributedatas
+
+addcomponent connector
+getcomponent connector
+addattribute length 3.4 cm
+
+getpart resistorList
+getcomponent resistor2
+getcomponentdatas
+
+quit
+

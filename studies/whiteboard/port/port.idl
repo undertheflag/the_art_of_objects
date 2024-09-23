@@ -1,0 +1,78 @@
+//*************************************************************************
+/**
+ * port.idl - interface definition for the port package
+ *
+ *   Copyright (C) 1999-2000 	Yun-Tung Lau
+ *   All Rights Reserved.  The contents of this file are proprietary to
+ *   the above copyright holder.
+ */
+//*************************************************************************
+
+module port {
+
+  exception PortException {string message;};
+
+  // ---------------------------------------------------------
+
+  // A user info structure.  Most operations carry this in order to
+  // identify the caller.
+  struct UserInfo {     
+    string address;  // = name@host (name is normally the username, or
+    		     //              it can be the name of the port)
+    long portNumber;
+  };
+
+  typedef sequence<UserInfo> UserInfoList;
+
+  interface MessagePortIF {
+
+    // connect to this message port
+    void connect(in MessagePortIF portIF, in UserInfo userInfo)
+      raises (PortException);
+
+    // disconnect from this message port
+    void disconnect(in UserInfo userInfo)
+      raises (PortException);
+
+    // send message to this port, which will then propagate it
+    void propagateMessage(in string msg, in UserInfo userInfo);
+
+    // get operations
+
+    UserInfo getUserInfo();  // user at this port
+
+    UserInfoList getUserInfoList(in UserInfo userInfo); // all user infos
+
+  };
+
+  // ---------------------------------------------------------
+
+  struct Image {    // An image strcuture
+    string name;
+
+    sequence<octet> cgm;  // a cgm buffer
+
+    sequence<long> pixels; // pixel buffer
+    long width;
+    long height;
+  };
+
+  interface ImagePortIF : MessagePortIF {
+
+    // Get the image at this port.  Used when first connecting
+    // to a port.
+    Image getImage();
+
+    // Request leadership from the group.  It returns the object
+    // reference to the old leader if leadership is granted.
+    // Message is the original message from the initiator.
+    ImagePortIF requestLeadership(in string message, in UserInfo userInfo) 
+      raises (PortException);
+
+    // send image to this port, which will then propagate it
+    // to the group
+    void propagateImage(in Image image, in UserInfo userInfo);
+
+  };
+
+};

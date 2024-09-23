@@ -1,0 +1,43 @@
+
+L:\ref\ooda-sample\chapter4>REM   Run tests in all sub directories 
+
+L:\ref\ooda-sample\chapter4>FOR /F %i IN ('dir /ad /b') DO if exist %i\run.bat cd %i   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter4>if exist Content\run.bat cd Content   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter4\Content>java Element 
+  <Book>
+    <Title>
+    The Art of Objects
+    </Title>
+    <Preface>
+    This book is about objects.
+    </Preface>
+    <Chapter_1>
+        <Title>
+        Introduction
+        </Title>
+    Objects are wonderful.
+    </Chapter_1>
+    <Chapter_2>
+        <Title>
+        Basics
+        </Title>
+    Everything is object.
+    </Chapter_2>
+  </Book>
+
+
+... saving to test.xml
+
+
+L:\ref\ooda-sample\chapter4>if exist Movable\run.bat cd Movable   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter4\Movable>java GeometryItem 
+GeometryItem with 5 points:
+  (0.0, 0.0)  (1.0, 0.0)  (0.8, 0.2)  (0.4, 0.5)  (0.2, 0.1)
+
+... after move
+GeometryItem with 5 points:
+  (0.1, -0.1)  (1.1, -0.1)  (0.9, 0.1)  (0.5, 0.4)  (0.30000000000000004, 0.0)
+

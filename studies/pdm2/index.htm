@@ -1,0 +1,211 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (WinNT; U) [Netscape]">
+   <meta http-equiv="keywords" content="PDM Server">
+   <meta name="Author" content="Yun-Tung Lau">
+   <title>PDM Server example</title>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000FF" vlink="#990066" alink="#FF0000">
+
+<center>
+<h2>
+<font color="#3333FF">PDM2 -<font size=+1> Interfaces for a Product Data
+Manager</font></font></h2></center>
+In this example three interfaces are used to expose the Catalog-Part-Attribute
+class hierarchy, which represents a Product Data Manager (PDM) system.&nbsp;
+This example demonstrates how to:
+<ul>
+<li>
+Expose persistent objects using the <font color="#FF0000">full</font> exposure
+approach</li>
+
+<li>
+Implement the interfaces as CORBA server objects</li>
+
+<li>
+Develop a command line client for the interface</li>
+</ul>
+
+<h3>
+
+<hr WIDTH="80%"></h3>
+
+<h3>
+<font color="#FF0000">Source Files</font></h3>
+
+<ul>
+<li>
+<a href="pdm.idl">pdm.idl</a></li>
+
+<br>Interface Definition Language (IDL) file for the interfaces CatalogIF,
+PartIF, and AttributeIF in the pdm module.&nbsp; (IF stands for interface.)&nbsp;
+Also defined are exception "PdmError" and the data structures AttributeData
+and PartData.
+<p>The interface CatalogIF has get and edit operations, which manage the
+Parts in the catalog.&nbsp; There are two types of operations: shallow
+and deep.&nbsp; Shallow operations involve only primitive data types and
+object references.&nbsp; Deep operations contains data structures (PartData
+and AttributeData).
+<p>Deep operations are used to transfer an entire tree of data via one
+call to the server, whereas shallow operations are more flexible for navigating
+between different parts in a product tree.&nbsp; Object references returned
+by shallow get operations enable fine-grained editing of Part's and Attribute's.
+<p>The interface PartIF is similar to CatalogIF.&nbsp; It manages its attributes
+and component parts.
+<p>The current design for AttributeIF only handles attributes with a double
+value, although there are other types of attributes in the persistent layer.&nbsp;
+You are encouraged to enhance this interface.
+<br>&nbsp;
+<li>
+<a href="Server.java">Server.java</a></li>
+
+<br>The Server code, which has a main function that creates an instance
+of the CatalogImpl class and calls&nbsp; impl_is_ready() (via a separate
+thread class BoaThread) to make it available to the client.
+<p>The code also defines a thread class TerminalThread, which is used to
+run a console session for direct&nbsp;&nbsp;&nbsp; access to the database.&nbsp;
+Another similar thread may also be started to process commands from an
+input command file if it is present.&nbsp; To shutdown the server, type
+in "shutdown" from the console.
+<br>&nbsp;
+<li>
+<font color="#3333FF">Interface Layer Objects</font></li>
+
+<br>The following interface implementation classes are present:
+<ul>
+<li>
+<a href="CatalogImpl.java">CatalogImpl.java</a></li>
+
+<br>Implementation for the interface "CatalogIF".&nbsp; It contains a persistent
+Catalog object as a servant class.
+<li>
+<a href="PartImpl.java">PartImpl.java</a></li>
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Implementation for
+the interface "PartIF". It contains a persistent Part object as a servant
+class.
+<ul>
+<li>
+<a href="AttributeImpl.java">AttributeImpl.java</a></li>
+
+<br>Implementation for the interface "AttributeIF". It contains a persistent
+Attribute object as a servant class.&nbsp; Note that this class also wraps
+around other subclasses of Attribute so that we do need to create one Impl
+class for each subclass of Attribute.</ul>
+Other features, such as access control, may be added to these classes.<br>
+<BR>
+<li>
+<font color="#3333FF">Persistent Layer Objects</font></li>
+
+<br>The following interface implementation classes are present:
+<ul>
+<li>
+<a href="Catalog.java">Catalog.java</a></li>
+
+<br>It contains a set of persistent Part objects.
+<li>
+<a href="Part.java">Part.java</a></li>
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; It contains a set
+of persistent Part objects as components and a set of persistent Attribute
+objects.
+<ul>
+<li>
+<a href="Attribute.java">Attribute.java</a></li>
+
+<br>The superclass of different types of attribute classes (<a href="DoubleAttribute.java">DoubleAttribute.java</a>,
+<a href="FloatAttribute.java">FloatAttribute.java</a>, and <a href="StringAttribute.java">StringAttribute.java</a>)</ul>
+Note that they are all subclasses of <a href="NamedObject.java">NamedObject.java</a>,
+which simply has a name.&nbsp; The class <a href="DBManager.java">DBManager.java
+</a>is used to facilitate database management.&nbsp; The class <a href="PVector.java">PVector.java</a>
+is a persistent enabled vector.&nbsp; All persistent enabled class are
+listed in <a href="Cfpargs">Cfpargs</a>, which is used by the database
+schema post processor.
+<br>&nbsp;
+<li>
+<a href="LayerMediator.java">LayerMediator.java</a></li>
+
+<br>This class mediates the objects between the interface and persistent
+layers.&nbsp; It also contains a hashtable of interface objects (with the
+persistent objects as keys) so that we will not duplicate existing interface
+objects.
+<br>&nbsp;
+<li>
+<a href="Client.java">Client.java</a></li>
+
+<br>The command line client code.&nbsp; It binds to the CatalogImpl object
+using the server name "PDM2 Server".&nbsp; It then waits for user commands.&nbsp;
+The runTerminal method translates command line inputs into method calls
+to the server.
+<br>&nbsp;</ul>
+
+<h3>
+<font color="#FF0000">Batch Files</font></h3>
+
+<ul>
+<li>
+<font color="#000099">build.bat</font></li>
+
+<br>A batch file for building the client and server on <i>Windows</i>.&nbsp;
+To build just the Java codes, simply type "build".&nbsp; To build also
+the IDL code, use "build idl".&nbsp; (Note: if the subdirectory pdm is
+not present, "build" will also build the IDL code.)
+<p>For the latter case, it will first invoke the IDL compiler and then
+compile the client source codes for pdm.idl.&nbsp; A subdirectory named
+"pdm" will be created, which contains the CORBA stub codes and their corresponding
+class files.&nbsp; A jar file pdm.jar is generated afterwards (which is
+not used for now).
+<li>
+<font color="#000099">runsrv.bat</font></li>
+
+<br>A batch file for running the server. The command line format is:
+<pre>&nbsp;&nbsp;&nbsp; <tt>runsrv</tt></pre>
+The server name is "PDM2 Server".
+<li>
+<font color="#000099">client.bat</font></li>
+
+<br>A batch file for running the client. The command line format is:
+<pre>&nbsp;&nbsp;&nbsp; <tt>client [hostname] [command.txt]</tt></pre>
+where the optional hostname (or IP address) is where the server is running
+and <tt>command.txt</tt> is an optional input command file.&nbsp; (Note:
+"localhost" may not work for certain network setup.&nbsp; Use the actual
+hostname or IP address in that case.)
+<li>
+<font color="#000099">setenv.bat</font></li>
+
+<br>A batch file for setting some environment variables.
+<li>
+<font color="#000099">run.bat</font></li>
+
+<br>A batch file for running a test of the persistent objects.
+<li>
+<font color="#000099">clean.bat</font></li>
+
+<br>A batch file for cleaning up the directories, leaving only source codes.</ul>
+
+<h3>
+<font color="#FF0000">Running the Codes</font></h3>
+This example was developed under VisiBroker (<a href="../studies.htm#visibroker">link</a>).&nbsp;
+To run the codes with the command line client, make sure that the VisiBroker
+Smart Agent (osagent) is running on the server object's network. Then enter
+the commands:
+<p><i><tt>On Windows:</tt></i>
+<ul>
+<pre><tt>start runsrv</tt></pre>
+
+<pre><tt>client&nbsp; </tt>(or <tt>client [hostname])</tt></pre>
+</ul>
+<i><tt>On Unix:</tt></i>
+<ul>
+<pre><tt>vbj Server &amp;</tt></pre>
+
+<pre><tt>vbj Client&nbsp; </tt>(or vbj C<tt>lient [hostname])</tt></pre>
+</ul>
+
+<p><br>
+<hr WIDTH="100%">
+<br>&nbsp;
+</body>
+</html>

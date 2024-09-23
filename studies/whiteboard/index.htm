@@ -1,0 +1,200 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (WinNT; U) [Netscape]">
+   <meta http-equiv="keywords" content="bank server">
+   <meta name="Author" content="Yun-Tung Lau">
+   <title>Readme for the ATM Central Server example</title>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000FF" vlink="#990066" alink="#FF0000">
+
+<center>
+<h2>
+<font color="#3333FF">Shared Whiteboard</font></h2></center>
+In this example we develop a Shared Whiteboard that allows network users
+to conduct an interactive discussion on a background image using graphic
+markups and text annotations.&nbsp; This example demonstrates how to:
+<ul>
+<li>
+Design a graphic user interface in an object-oriented way</li>
+
+<li>
+Use an interface as a servant class</li>
+
+<li>
+Implement an aggregation architecture with data exchange policies</li>
+
+<li>
+Design a two layer system (interface and control layers)</li>
+
+<li>
+Develop a system in two phases, following a waterfall development cycle
+(requirement, analyses, design, implementation, integration)</li>
+
+<li>
+Develop a rapid prototype before the full system</li>
+</ul>
+
+<h3>
+
+<hr WIDTH="80%"></h3>
+
+<h3>
+<font color="#FF0000">Source Files <b>(for a complete list, see <a href="readme.txt">readme.txt</a>)</b></font></h3>
+
+<ul>
+<li>
+<a href="wb">Package wb</a></li>
+
+<ul>
+<li>
+<a href="wb/Main.java">Main.java</a></li>
+
+<br>Main class containing the graphic user interface components of the
+Whiteboard window.</ul>
+
+<ul>
+<li>
+<a href="wb/InfoDialog.java">InfoDialog.java</a></li>
+
+<br>A dialog with a text area, an input field, and a button.
+<br>&nbsp;</ul>
+
+<li>
+<a href="widget">Package widget</a></li>
+
+<ul>
+<li>
+<a href="widget/DrawCanvas.java">DrawCanvas.java</a></li>
+
+<br>The major Canvas for drawing and displaying images and markups.</ul>
+
+<ul>&nbsp;</ul>
+
+<li>
+<a href="graph">Package graph</a></li>
+
+<ul>
+<li>
+<a href="graph/Glyph.java">Glyph.java</a></li>
+
+<br>Defines basic glyphs for markups (line, rectangle, etc) and their operations.
+<li>
+<a href="graph/Cgm.java">Cgm.java</a></li>
+
+<br>CGM driver.
+<li>
+<a href="graph/CgmTool.java">CgmTool.java</a></li>
+
+<br>CGM library tool.
+<br>&nbsp;</ul>
+
+<li>
+<a href="port">Package port</a></li>
+
+<br>This package contains two layers: the interface layer for communication
+between ports and the control layer for interacting with the local user
+interface.
+<ul>
+<li>
+<a href="port/port.idl">port.idl</a></li>
+
+<br>Interface definition file (IDL) for the port package.&nbsp; Two interfaces
+are defined: MessagePortIF and ImagePortIF.&nbsp; (IF stands for interface.)&nbsp;
+Also defined are exception "PortException", a user information data structure
+UserInfo, and an image data structure Image.
+<br>ImagePortIF is a subclass of MessagePortIF so that it inherits all
+the operations of MessagePortIF.
+<li>
+<a href="port/MessagePort.java">MessagePort.java</a></li>
+
+<br>The controller object for the message port. It acts as a client to
+remote message ports. It invokes and controls the display of all remote
+requests.&nbsp; This class has a bi-directional link to the class MessagePortImpl.
+<li>
+<a href="port/MessagePortImpl.java">MessagePortImpl.java</a></li>
+
+<br>The interface implementation class for the message port.&nbsp; It also
+implements some helper operations.
+<li>
+<a href="port/ImagePort.java">ImagePort.java</a></li>
+
+<br>The controller object for the image port.&nbsp; It acts as a client
+to remote image ports. It invokes and controls the display of all remote
+requests.&nbsp; This class has a bi-directional link to the class ImagePortImpl.
+<li>
+<a href="port/ImagePortImpl.java">ImagePortImpl.java</a></li>
+
+<br>The interface implementation class for the image port.&nbsp; It also
+implements some helper operations.</ul>
+
+<p><br>To build the port package, do (this will be automatically called
+if you build from the whiteboard home directory):
+<ul><tt>build.bat</tt></ul>
+which is a batch file for building the package on <i>Windows</i>.&nbsp;
+It will first invoke the IDL compiler and then compile the source codes.&nbsp;
+A subdirectory named "port" will be created, which contains the CORBA stub
+and skeleton codes and all class files for the package.&nbsp; A JAR file
+port.jar is also made, which will be used by the Shared Whiteboard.
+<p>The message port code can be run by itself without resorting to ImagePort.&nbsp;
+To run, do:
+<ul>run<tt> [port_name]</tt></ul>
+
+<p><br>You may run multiple message port this way and have them connected
+to one another.
+<p>TestImagePort.bat is a batch file for testing the image port via a terminal.
+<br>&nbsp;
+<li>
+<a href="jni">Package jni</a></li>
+
+<br>This package contains codes for using the java native interface to
+access various image library functions.
+<ul>
+<li>
+<a href="jni/ImagePort.java">ImagePort.java</a></li>
+
+<li>
+Java Native Interface to various image library functions.&nbsp; <i>(Not
+to be confused with the one of the same name under the port package.)&nbsp;</i>
+Two native methods are defined: read(file) and write(file).</li>
+
+<br><a href="jni/ImagePort.cpp">ImagePort.cpp</a>
+<br>Contains the native methods that exchange data structure with jni/ImagePort.java.</ul>
+</ul>
+
+<h3>
+<font color="#FF0000">Batch Files</font></h3>
+
+<ul>
+<li>
+<font color="#000099">build.bat</font></li>
+
+<br>A batch file for building the Shared Whiteboard on <i>Windows</i>.
+<li>
+<font color="#000099">run.bat</font></li>
+
+<br>A batch file for running the Shared Whiteboard.
+<ul>run<tt> [port_name]</tt></ul>
+
+<li>
+<font color="#000099">builddoc.bat</font></li>
+
+<br>A batch file for building the HTML documents for the Java source codes.</ul>
+
+<h3>
+<font color="#FF0000">Running the Code</font></h3>
+To run the Shared Whiteboard as a standalone Whiteboard (on<i><tt> Windows)</tt></i>,
+simply do:
+<ul>run</ul>
+To allow the Shared Whiteboard to collaborate with others, you need to
+have VisiBroker (<a href="../studies.htm#visibroker">link</a>) installed.&nbsp;
+Ensure that the VisiBroker library appears in one of the paths in port\Setenv.bat.&nbsp;
+Also, make sure that the VisiBroker Smart Agent (osagent) is running on
+the server object's network. Then enter the commands:
+<blockquote>run<tt> [port_name]</tt></blockquote>
+
+<hr WIDTH="100%">
+<br>&nbsp;
+</body>
+</html>

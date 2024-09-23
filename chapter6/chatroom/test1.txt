@@ -1,0 +1,4 @@
+Hello, this is John.
+I am the only one in this chatroom.
+So I am qutting.
+quit

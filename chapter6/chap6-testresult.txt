@@ -1,0 +1,122 @@
+
+L:\ref\ooda-sample\chapter6>REM   Run tests in all sub directories 
+
+L:\ref\ooda-sample\chapter6>FOR /F %i IN ('dir /ad /b') DO if exist %i\run.bat cd %i   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter6>if exist Admin\run.bat cd Admin   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter6\Admin>java AdminImpl 
+Please unlock the account for u-john
+Password changed for u-john
+
+L:\ref\ooda-sample\chapter6>if exist Bank\run.bat cd Bank   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter6\Bank>java Bank 
+Bank: My Bank
+Account Managers:
+  Bank Group A: There are 2 acounts.
+
+  Bank Group B: There are 3 acounts.
+    Tony (1384990)
+    Jane (900266)
+    Kay (26314)
+
+
+
+
+
+L:\ref\ooda-sample\chapter6>if exist ChatRoom\run.bat cd ChatRoom   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter6\ChatRoom>echo off 
+... Testing the Chat Room
+(John) connected
+Display to John - (John) connected
+(Mary) connected
+Display to John - (Mary) connected
+Display to Mary - (Mary) connected
+(Sports) Good Morning!  Fans.
+Display to John - (Sports) Good Morning!  Fans.
+Display to Mary - (Sports) Good Morning!  Fans.
+
+Chat room: Sports
+  Users:  John Mary
+java Pause [seconds]  (default = 1 sec)
+Usage: java ChatUserImpl [username] [host] [message_file]
+   default username = ChatUser
+   default host = localhost
+John registered.
+Display to John - (John) connected
+-----------------------------------------------
+Enter: command option1 option2 ...
+Valid commands
+  help                     // print this message
+
+  quit                     // quit
+-----------------------------------------------
+
+> Display to John - (John) Hello, this is John.
+> Display to John - (John) I am the only one in this chatroom.
+> Display to John - (John) So I am qutting.
+> L:\ref\ooda-sample\chapter6>if exist Event\run.bat cd Event   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter6\Event>java ProducerImpl 
+... notifying subscribers
+Display to John - Good Morning! (from Tony)
+Display to Mary - Good Morning! (from Tony)
+... notifying subscribers
+Display to John - How are you today? (from Tony)
+Display to Mary - How are you today? (from Tony)
+Display to Jane - How are you today? (from Tony)
+... notifying subscribers
+... notifying subscribers
+
+L:\ref\ooda-sample\chapter6>if exist Factory\run.bat cd Factory   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter6>if exist MVC\run.bat cd MVC   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter6\MVC>java Controller 
+
+L:\ref\ooda-sample\chapter6>if exist Observer\run.bat cd Observer   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter6\Observer>java ObserverImpl 
+
+... random observable sleeping for 3 secs
+Observer B - 
+  got change No. 1 at Tue Apr 04 17:17:05 EDT 2000
+Observer A - 
+  got change No. 1 at Tue Apr 04 17:17:05 EDT 2000
+... random observable sleeping for 3 secs
+Observer B - 
+  got change No. 2 at Tue Apr 04 17:17:09 EDT 2000
+Observer A - 
+  got change No. 2 at Tue Apr 04 17:17:09 EDT 2000
+... random observable sleeping for 2 secs
+Observer B - 
+  got change No. 3 at Tue Apr 04 17:17:11 EDT 2000
+Observer A - 
+  got change No. 3 at Tue Apr 04 17:17:11 EDT 2000
+... random observable sleeping for 3 secs
+Observer B - 
+  got change No. 4 at Tue Apr 04 17:17:14 EDT 2000
+Observer A - 
+  got change No. 4 at Tue Apr 04 17:17:14 EDT 2000
+... random observable sleeping for 1 secs
+Observer B - 
+  got change No. 5 at Tue Apr 04 17:17:15 EDT 2000
+
+L:\ref\ooda-sample\chapter6>if exist Timer\run.bat cd Timer   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter6\Timer>java ListenerImpl 
+
+Timer message 0 at Tue Apr 04 17:17:16 EDT 2000
+Timer message 1 at Tue Apr 04 17:17:17 EDT 2000
+Timer message 2 at Tue Apr 04 17:17:18 EDT 2000
+Timer message 3 at Tue Apr 04 17:17:19 EDT 2000
+Timer message 4 at Tue Apr 04 17:17:20 EDT 2000
+Timer message 5 at Tue Apr 04 17:17:21 EDT 2000
+
+L:\ref\ooda-sample\chapter6>if exist User\run.bat cd User   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter6\User>java UserImpl 
+Mainframe user: u-john
+... password changed for u-john

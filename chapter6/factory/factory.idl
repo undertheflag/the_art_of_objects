@@ -1,0 +1,30 @@
+#ifndef Factory_idl
+#define Factory_idl
+
+module factory {
+
+  exception ServiceError {
+    string message;
+  };
+
+  interface Service {
+    string getName();
+    any performService(in any a) raises (ServiceError);
+      // the "any" type allows any type of data
+  };
+
+  exception FactoryError {
+    string message;
+  };
+
+  interface ServiceFactory {
+
+    Service create();
+    Service find(in string name) raises (FactoryError);
+    void remove(in string serviceName) raises (FactoryError);
+    string showAll ();
+  };
+
+};
+
+#endif // Factory_idl

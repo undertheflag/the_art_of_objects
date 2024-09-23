@@ -1,0 +1,145 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.05 [en] (WinNT; U) [Netscape]">
+   <META HTTP-EQUIV="keywords" CONTENT="bank server">
+   <META NAME="Author" CONTENT="Yun-Tung Lau">
+   <TITLE>Readme for the ATM Central Server example</TITLE>
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="#990066" ALINK="#FF0000">
+
+<CENTER>
+<H2>
+<FONT COLOR="#3333FF">ATM Central Server - <I><FONT SIZE=+1>interface layer</FONT></I></FONT></H2></CENTER>
+In this example the <B>ATM Central Server (atmcs)</B> interacts with the
+ATM clients and relays transaction requests to individual banks.&nbsp;
+The interface design follows the object factory pattern .&nbsp; This example
+demonstrates how to:
+<UL>
+<LI>
+Design interfaces using the object factory pattern</LI>
+
+<LI>
+Use an interface as a servant class</LI>
+
+<LI>
+Implement interfaces as both server and client</LI>
+
+<LI>
+Manage CORBA objects with a hash table</LI>
+</UL>
+This server must be used together with the <A HREF="../bank/index.htm">Bank
+Server</A>.&nbsp; Since this implementation has only interface layer objects
+and no persistent objects, some bank and account information is hard coded
+in the <TT>login</TT> method of SessionMgrImpl.
+<H3>
+
+<HR WIDTH="80%"></H3>
+
+<H3>
+<FONT COLOR="#FF0000">Source Files</FONT></H3>
+
+<UL>
+<LI>
+<A HREF="atmcs.idl">atmcs.idl</A></LI>
+
+<BR>IDL file for the interfaces SessionIF and SessionMgrIF in the atmcs
+module.&nbsp; (IF stands for interface.)&nbsp; Also defined are exception
+"AtmcsError", a cash card data structure CardInfo, and an account information
+structure AccountInfo.
+
+<P>SessionMgrIF only has <TT>login </TT>and <TT>logout</TT> operations
+exposed, though the implementation class may have conventional object management
+operations.
+<BR>&nbsp;
+<LI>
+<A HREF="Server.java">Server.java</A></LI>
+
+<BR>The Server code, which has a main function that creates an instance
+of the <B>SessionMgrImpl</B> class and calls <TT>obj_is_ready()</TT>and
+<TT>impl_is_ready()</TT> to make it available to the client.
+<BR>The code contains the following interface implementation classes:
+<UL>
+<LI>
+<B>SessionMgrImpl</B></LI>
+
+<BR>Implementation for the session manager interface "SessionMgrIF". It
+implements access control methods: <TT>login</TT> and <TT>logout.</TT>
+Mangement methods like <TT>remove </TT>(removes a session), and <TT>showSessions</TT>
+are implemented but not exposed as interface operations.
+<BR>&nbsp;</UL>
+
+<UL>
+<LI>
+<B>SessionImpl</B></LI>
+
+<BR>Implementation for the interface "SessionIF".&nbsp;&nbsp; It implements
+get methods: getB<TT>alance, getAccountInfo, getAccountHistory</TT>, and
+transaction methods:<TT> deposit, withdraw, transferTo, payBill.</TT>
+
+<P>Each session is created with an AccountIF object as one of the input
+argument.&nbsp; AccountIF thus serves as a servant object.&nbsp; All interface
+methods invoke the corresponding methods on this servant object.
+
+<P>Since this implementation has no persistent objects, some bank and account
+information is hard coded in the <TT>login</TT> method.
+<BR>&nbsp;</UL>
+
+<LI>
+<A HREF="Client.java">Client.java</A></LI>
+
+<BR>The client code.&nbsp; It binds to the <B>SessionMgrImpl</B> object
+using a server name (e.g. "ATM Session Manager").&nbsp; It then waits for
+user commands to open accounts and to initiate transactions.&nbsp; The
+runTerminal method translates command line inputs into method calls to
+the server.&nbsp; One may also run the client with an input text file that
+contains multiple command lines.&nbsp; An example is in <A HREF="Test1.txt">Test1.txt</A>.</UL>
+
+<H3>
+<FONT COLOR="#FF0000">Batch Files</FONT></H3>
+
+<UL>
+<LI>
+<FONT COLOR="#000099">build.bat</FONT></LI>
+
+<BR>A batch file for building the client and server on <I>Windows</I>.&nbsp;
+It will first invoke the IDL compiler and then compile the server and client
+source codes.&nbsp; A subdirectory named "atmcs" will be created, which
+contains the CORBA stub and skeleton codes and their corresponding class
+files.
+<LI>
+<FONT COLOR="#000099">runsrv.bat</FONT></LI>
+
+<BR>A batch file for running the server.
+<LI>
+<FONT COLOR="#000099">client.bat</FONT></LI>
+
+<BR>A batch file for running the client.&nbsp; The command line format
+is:
+<PRE>&nbsp;&nbsp;&nbsp; <TT>client [hostname] [command.txt]</TT></PRE>
+where the optional hostname (or IP address) is where the server is running
+and <TT>command.txt</TT> is an optional input command file such as <A HREF="Test1.txt">Test1.txt</A>.</UL>
+
+<H3>
+<FONT COLOR="#FF0000">Running the Codes</FONT></H3>
+This example was developed under VisiBroker (<A HREF="../studies.htm#visibroker">link</A>).&nbsp;
+To run the codes, make sure that the VisiBroker Smart Agent (osagent) is
+running on the server object's network. Then enter the commands:
+
+<P><I><TT>On Windows:</TT></I>
+<UL>
+<PRE><TT>start runsrv</TT></PRE>
+
+<PRE><TT>client&nbsp; </TT>(or <TT>client [hostname] [Test1.txt])</TT></PRE>
+</UL>
+<I><TT>On Unix:</TT></I>
+<UL>
+<PRE><TT>vbj Server &amp;</TT></PRE>
+
+<PRE><TT>vbj Client&nbsp; </TT>(or vbj C<TT>lient [hostname] [Test1.txt])</TT></PRE>
+</UL>
+
+<HR WIDTH="100%">
+<BR>&nbsp;
+</BODY>
+</HTML>

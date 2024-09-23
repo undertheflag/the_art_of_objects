@@ -1,0 +1,160 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (WinNT; U) [Netscape]">
+   <meta http-equiv="keywords" content="PDM Server">
+   <meta name="Author" content="Yun-Tung Lau">
+   <title>PDM Server example</title>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000FF" vlink="#990066" alink="#FF0000">
+
+<center>
+<h2>
+<font color="#3333FF">PDM - <font size=+1>an Interface for a Product Data
+Manager</font></font></h2></center>
+In this example a single interface is used to expose the Catalog-Part-Attribute
+class hierarchy, which represents a Product Data Manager (PDM) system.&nbsp;
+This example demonstrates how to:
+<ul>
+<li>
+Expose objects using the single exposure approach</li>
+
+<li>
+Implement the interface as a CORBA server</li>
+
+<li>
+Develop a command line client for the interface</li>
+
+<li>
+Develop an Applet client for the interface</li>
+</ul>
+
+<h3>
+
+<hr WIDTH="80%"></h3>
+
+<h3>
+<font color="#FF0000">Source Files</font></h3>
+
+<ul>
+<li>
+<a href="pdm.idl">pdm.idl</a></li>
+
+<br>Interface Definition Language (IDL) file for the interface CatalogIF
+in the pdm module.&nbsp; (IF stands for interface.)&nbsp; Also defined
+are exception "PdmError" and the data structures Attribute and Part.
+
+<p>The interface CatalogIF has get and edit operations, which manage the
+Parts in the catalog.&nbsp; Notice that there are no fine-grained editing
+functions for component Part's and Attribute's.&nbsp; These functions are
+not exposed to the interface layer.  Consequently, all get operations are
+"deep": they return the entire hierarchy of parts.  The same is true
+for addPart(...).
+
+<br>&nbsp;
+<li>
+<a href="Server.java">Server.java</a></li>
+
+<br>The Server code, which has a main function that creates an instance
+of the CatalogImpl class and calls obj_is_ready() and impl_is_ready() to
+make it available to the client.&nbsp; The main function also generates
+the file pdm.ior, which is used by the Applet client.
+<p>The code contains the following interface implementation class:
+<ul>
+<li>
+<b>CatalogImpl</b></li>
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Implementation for
+the interface "CatalogIF". It implements the get and edit methods.
+<br>&nbsp;
+<li>
+<a href="Client.java">Client.java</a></li>
+
+<br>The command line client code.&nbsp; It binds to the CatalogImpl object
+using the server name "PDM Server".&nbsp; It then waits for user commands.&nbsp;
+The runTerminal method translates command line inputs into method calls
+to the server.
+<br>&nbsp;
+<li>
+<a href="PdmApplet.java">PdmApplet.java</a></li>
+
+<br>An Applet client for the pdm interface.&nbsp; The client connects to
+the pdm server by first retrieving the pdm.ior file, which contains the
+object reference for the Catalog server object.&nbsp; Users can then invoke
+commands through the web browser.&nbsp; Currently only Netscape browser
+(v.4.5 or higher) works with this example.
+<br><br>
+Note that the pdm server must be started and running at the same machine
+as the web server.&nbsp; Also, the jar file "vbjorb.jar" from VisiBroker
+must be copied to Netscape's Plugins directory (e.g. C:\netscape\Program\Plugins).&nbsp;
+This jar file contains bytecodes related to VisiBroker's ORB.
+<br>&nbsp;</ul>
+
+<h3>
+<font color="#FF0000">Batch Files</font></h3>
+
+<ul>
+<li>
+<font color="#000099">build.bat</font></li>
+
+<br>A batch file for building the client and server on <i>Windows</i>.&nbsp;
+To build just the Java codes, simply type "build".&nbsp; To build also
+the IDL codes, use "build idl".&nbsp; (Note: you need to set the Netscape
+path in build.bat in order to build the applet file.)
+<p>For the latter case, it will first invoke the IDL compiler and then
+compile the client source codes for pdm.idl.&nbsp; A subdirectory named
+"pdm" will be created, which contains the CORBA stub codes and their corresponding
+class files.&nbsp; A jar file pdm.jar is generated afterwards, which is
+used by the Applet client.
+<li>
+<font color="#000099">runsrv.bat</font></li>
+
+<br>A batch file for running the server. The command line format is:
+<pre>&nbsp;&nbsp;&nbsp; <tt>runsrv</tt></pre>
+The server name is "PDM Server".
+<li>
+<font color="#000099">client.bat</font></li>
+
+<br>A batch file for running the client. The command line format is:
+<pre>&nbsp;&nbsp;&nbsp; <tt>client [hostname] [command.txt]</tt></pre>
+where the optional hostname (or IP address) is where the server is running
+and <tt>command.txt</tt> is an optional input command file.
+(Note: "localhost" may not work for certain network setup.  Use the actual
+hostname or IP address in that case.)
+
+<li><font color="#000099">setenv.bat</font></li>
+<br>A batch file for setting some environment variables.</ul>
+
+<li><font color="#000099">clean.bat</font></li>
+<br>A batch file for cleaning the directories, leaving only source codes.</ul>
+
+<h3>
+<font color="#FF0000">Running the Codes</font></h3>
+This example was developed under VisiBroker (<a href="../studies.htm#visibroker">link</a>).&nbsp;
+To run the codes with the command line client, make sure that the VisiBroker Smart Agent (osagent) is
+running on the server object's network. Then enter the commands:
+<p><i><tt>On Windows:</tt></i>
+<ul>
+<pre><tt>start runsrv</tt></pre>
+
+<pre><tt>client&nbsp; </tt>(or <tt>client [hostname])</tt></pre>
+</ul>
+<i><tt>On Unix:</tt></i>
+<ul>
+<pre><tt>vbj Server &amp;</tt></pre>
+
+<pre><tt>vbj Client&nbsp; </tt>(or vbj C<tt>lient [hostname])</tt></pre>
+</ul>
+To run the Applet client, open a Netscape browser and point it to:<br>
+<tt>&nbsp;&nbsp;&nbsp; <a href="pdm.htm">studies/pdm/pdm.htm</a></tt><br>
+<BR>
+<br>or, if you have set up the web server, point the browser to:
+<br><tt>&nbsp;&nbsp;&nbsp; <a href="http://localhost/ooda/pdm/pdm.htm">http://localhost/ooda/pdm/pdm.htm</a></tt>
+<br><br>
+<BR>
+<br>
+<hr WIDTH="100%">
+<br>&nbsp;
+</body>
+</html>

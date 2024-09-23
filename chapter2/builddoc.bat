@@ -1,0 +1,2 @@
+if not exist ..\docs\Chapter2 mkdir ..\docs\Chapter2
+javadoc -d ..\docs\Chapter2 UserManager\UserManager.java Container\*.java Node\*.java Folder\*.java Version-Revision\*.java Person-Role\Person.java Person-Role\Role.java Person-Role\User.java Item-Group\*.java Trade\*.java Category-Part\*.java Catalog-Part\Catalog.java Catalog-Part\Tool.java Catalog-Part\Context.java

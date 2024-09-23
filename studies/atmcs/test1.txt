@@ -1,0 +1,32 @@
+# Input command lines for bank server
+#
+# Note: if you run N concurrent clients, the correct result should be:
+#  John:  N * 1100 + a random small number
+#  Jane:  N * 1200 + a random small number
+#    (be sure to restart the server first)
+#
+# To run concurrent clients, use: 
+#  mclient N
+#
+login 88881234 John 999
+deposit 1000
+pay PEPCO 200
+balance
+withdraw 200
+deposit 400
+
+login 88881001 Jane 888
+deposit 2000
+pay GASCO 300
+balance
+withdraw 400
+transfer John 100
+
+login 88881234 John 999
+balance
+
+login 88881001 Jane 888
+balance
+
+quit
+

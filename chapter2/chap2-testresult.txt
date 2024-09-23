@@ -1,0 +1,261 @@
+
+L:\ref\ooda-sample\chapter2>REM   Run tests in all sub directories 
+
+L:\ref\ooda-sample\chapter2>FOR /F %i IN ('dir /ad /b') DO if exist %i\run.bat cd %i   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter2>if exist Catalog-Part\run.bat cd Catalog-Part   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter2\Catalog-Part>java Catalog 
+The Catalog has 3 parts.
+List of tools:
+Tool: Radio
+Parts used:
+    Part: resistor    - for filtering
+    Quantity = 3
+    Part: antenna    - for receiving
+    Quantity = 1
+
+Tool: TV
+Parts used:
+    Part: resistor    - for filtering
+    Quantity = 8
+    Part: antenna    - for receiving
+    Quantity = 1
+    Part: CRT    - for display
+    Quantity = 1
+
+
+... Expected exception:
+java.lang.Exception: The part antenna is already used in this tool!
+
+L:\ref\ooda-sample\chapter2>if exist Category-Part\run.bat cd Category-Part   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter2\Category-Part>java Category 
+resistor
+  Properties:
+    resistance (Ohm) (f)    power (W) (f)    length (mm) (f)
+All parts:
+resistor - 123
+  Attributes:
+    resistance (Ohm) = 5.6
+    power (W) = 0.1
+    length (mm) = 12.0
+
+resistor - 323
+  Attributes:
+    resistance (Ohm) = 12.6
+    power (W) = 0.2
+    length (mm) = 16.0
+
+
+
+L:\ref\ooda-sample\chapter2>if exist Container\run.bat cd Container   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter2\Container>java Container 
+There are 4 objects.
+CD
+Laser Disk
+DVD
+999
+... after the changes
+CD
+Laser Disk
+999
+
+
+L:\ref\ooda-sample\chapter2>if exist Folder\run.bat cd Folder   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter2\Folder>java Folder 
+  Folder: Book -  Size: 120, Date: Tue Apr 04 17:41:54 EDT 2000
+    Folder: Chapter 1 -  Size: 4420, Date: Tue Apr 04 17:41:54 EDT 2000, Parent: Book
+	Figure 1 -  Size: 180, Date: Tue Apr 04 17:41:54 EDT 2000, Parent: Chapter 1
+    Folder: Chapter 2 -  Size: 3011, Date: Tue Apr 04 17:41:54 EDT 2000, Parent: Book
+	Figure 2 -  Size: 280, Date: Tue Apr 04 17:41:54 EDT 2000, Parent: Chapter 2
+	Figure 3 -  Size: 380, Date: Tue Apr 04 17:41:54 EDT 2000, Parent: Chapter 2
+    Folder: Chapter 3 -  Size: 2420, Date: Tue Apr 04 17:41:54 EDT 2000, Parent: Book
+	Figure 4 -  Size: 480, Date: Tue Apr 04 17:41:54 EDT 2000, Parent: Chapter 3
+
+
+... after the changes
+  Folder: Book -  Size: 120, Date: Tue Apr 04 17:41:54 EDT 2000
+    Folder: Chapter 1 -  Size: 4420, Date: Tue Apr 04 17:41:54 EDT 2000, Parent: Book
+	Figure 1 -  Size: 180, Date: Tue Apr 04 17:41:54 EDT 2000, Parent: Chapter 1
+    Folder: Chapter 2 -  Size: 3011, Date: Tue Apr 04 17:41:54 EDT 2000, Parent: Book
+	Figure 2 -  Size: 280, Date: Tue Apr 04 17:41:54 EDT 2000, Parent: Chapter 2
+    Folder: Chapter 3 -  Size: 2420, Date: Tue Apr 04 17:41:54 EDT 2000, Parent: Book
+	Figure 3 -  Size: 380, Date: Tue Apr 04 17:41:54 EDT 2000, Parent: Chapter 3
+	Figure 4 -  Size: 480, Date: Tue Apr 04 17:41:54 EDT 2000, Parent: Chapter 3
+
+
+L:\ref\ooda-sample\chapter2>if exist Item-Group\run.bat cd Item-Group   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter2\Item-Group>java Group 
+Group:
+Circle: radius = 1.1; center at(0.4, 0.5)
+Circle: radius = 1.1; center at(0.6, 0.7)
+Group:
+Circle: radius = 1.1; center at(0.8, 0.9)
+
+... After move:
+Group:
+Circle: radius = 1.1; center at(0.5, 0.4)
+Circle: radius = 1.1; center at(0.7, 0.6)
+Group:
+Circle: radius = 1.1; center at(0.9, 0.8)
+
+
+
+L:\ref\ooda-sample\chapter2>if exist Node\run.bat cd Node   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter2\Node>java Node 
+Macao is upstream to Washington
+Tokyo is NOT upstream to Los Angeles
+All downstream nodes from Macao:
+  Macao
+    Tokyo
+        San Francisco
+                Washington
+    Hong Kong
+        San Francisco
+                Washington
+        Chicago
+                Washington
+        Los Angeles
+                Washington
+    San Francisco
+        Washington
+
+... after the changes
+  ... going down:
+  Macao
+    Hong Kong
+        San Francisco
+                Washington
+        Los Angeles
+                Washington
+    San Francisco
+        Washington
+  ... going up:
+  Washington
+    Los Angeles
+        Hong Kong
+                Macao
+    San Francisco
+        Macao
+        Tokyo
+        Hong Kong
+                Macao
+    Chicago
+
+
+L:\ref\ooda-sample\chapter2>if exist Person-Role\run.bat cd Person-Role   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter2\Person-Role>java Person 
+u2 is of type: User
+b1 is of type: Buyer
+
+Name: John
+Age: 20
+Roles:
+  Role - User: u-john
+  Role - User: u-john-2
+  Role - Buyer: John
+Address: 40 Water St
+
+Name: Mary
+Age: 18
+Roles:
+  Role - User: u-mary
+  Role - Buyer: Mary
+Address: 101 Pearl St
+
+
+
+L:\ref\ooda-sample\chapter2>if exist Trade\run.bat cd Trade   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter2\Trade>java Trade 
+Product: soap
+Quantity: 10
+Total Price: 48.5
+Supplier: General Store  Buyer: John
+
+Product: pen
+Quantity: 80
+Total Price: 23.76 (10.0% discount applied)
+Supplier: General Store  Buyer: Mary
+
+Product: soap
+Quantity: 22
+Total Price: 96.02999999999999 (10.0% discount applied)
+Supplier: General Store  Buyer: Mary
+
+Product: pen
+Quantity: 5
+Total Price: 1.6500000000000001
+Supplier: General Store  Buyer: John
+
+
+... List of Suppliers:
+>>> Supplier: General Store
+Address: 9 Main St
+Trades:
+  Product: soap
+Quantity: 10
+Total Price: 48.5
+Supplier: General Store  Buyer: John
+  Product: pen
+Quantity: 80
+Total Price: 23.76 (10.0% discount applied)
+Supplier: General Store  Buyer: Mary
+  Product: soap
+Quantity: 22
+Total Price: 96.02999999999999 (10.0% discount applied)
+Supplier: General Store  Buyer: Mary
+  Product: pen
+Quantity: 5
+Total Price: 1.6500000000000001
+Supplier: General Store  Buyer: John
+
+>>> Supplier: Special Store
+Address: 11 Water St
+Trades:
+
+
+L:\ref\ooda-sample\chapter2>if exist UserManager\run.bat cd UserManager   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter2\UserManager>java UserManager 
+There are 3 users.
+Name: John
+Age: 20
+Username: u-john
+
+Name: Mary
+Age: 18
+Username: u-mary
+
+Name: Tom
+Age: 60
+Username: u-tom
+
+... after the changes
+Name: John
+Age: 21
+Username: u-john
+
+Name: Mary Ann
+Age: 18
+Username: u-mary
+
+
+
+L:\ref\ooda-sample\chapter2>if exist Version-Revision\run.bat cd Version-Revision   & run   & cd ..  
+
+L:\ref\ooda-sample\chapter2\Version-Revision>java Revision 
+1.1.3 - by Jane on Tue Apr 04 17:41:56 EDT 2000
+1.1.2 - by Tom on Tue Apr 04 17:41:56 EDT 2000
+1.1.1 - by Tom on Tue Apr 04 17:41:56 EDT 2000
+V. 1 - by Jane on Tue Apr 04 17:41:56 EDT 2000
+
+
+
+L:\ref\ooda-sample\chapter2>if exist XML\run.bat cd XML   & run   & cd ..  

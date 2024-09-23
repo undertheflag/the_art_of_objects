@@ -1,0 +1,137 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.05 [en] (WinNT; U) [Netscape]">
+   <META HTTP-EQUIV="keywords" CONTENT="factory server">
+   <META NAME="Author" CONTENT="Yun-Tung Lau">
+   <TITLE>Readme for the factory example</TITLE>
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="#990066" ALINK="#FF0000">
+
+<CENTER>
+<H2>
+<FONT COLOR="#3333FF">Factory Server</FONT></H2></CENTER>
+In this example the <B>Factory Server </B>simulates a service factory (which
+is also a manager too).&nbsp; The interface design follows the object factory
+pattern.&nbsp; This example demonstrates how to:
+<UL>
+<LI>
+Design interfaces using the object factory pattern</LI>
+
+<LI>
+Implement interfaces using the TIE mechanism</LI>
+
+<LI>
+Manage CORBA objects with a hash table</LI>
+</UL>
+
+<H3>
+
+<HR WIDTH="80%"></H3>
+
+<H3>
+<FONT COLOR="#FF0000">Source Files</FONT></H3>
+
+<UL>
+<LI>
+<A HREF="factory.idl">factory.idl</A></LI>
+
+<BR>IDL file for the interfaces Service and ServiceFactory in the factory
+module.&nbsp;&nbsp; Also defined are exceptions "ServiceError" and "FactoryError".
+<BR>&nbsp;
+<LI>
+<A HREF="Server.java">Server.java</A></LI>
+
+<BR>The Server code, which has a main function that creates an instance
+of the <B>ServiceFactoryImpl</B> class and calls <TT>obj_is_ready()</TT>and
+<TT>impl_is_ready()</TT> to make it available to the client.
+<BR>The code contains the following interface implementation classes:
+<UL>
+<LI>
+<B>ServiceFactoryImpl</B></LI>
+
+<BR>A generic implementation for the interface "ServiceFactory". The create
+method is not implemented here.&nbsp; It is left to the subclass <B>URLServerFactoryImpl</B>.&nbsp;
+This implementation also include some mangement methods: <TT>find, remove,</TT>
+and <TT>showAll.</TT></UL>
+
+<UL>
+<LI>
+<B>ServiceImpl</B></LI>
+
+<BR>A generic implementation for the interface "Service".&nbsp;&nbsp; It
+implements the method <TT>getName</TT> but not <TT>performService.</TT>
+<BR>&nbsp;
+<LI>
+<B>URLServiceFactoryImpl</B></LI>
+
+<BR>A specific implementation for the interface "ServiceFactory" and a
+subclass of <B>ServiceFactoryImpl</B>.&nbsp; It implements the <TT>create</TT>
+method, which is characteristic of object factories.&nbsp; The <TT>create</TT>
+method creates a new <B>ServerImpl</B> object with a unique name.
+<BR>&nbsp;
+<LI>
+<B>URLServiceImpl</B></LI>
+
+<BR>A specific implementation for the interface "Service" and a subclass
+of <B>ServiceImpl</B>.&nbsp;&nbsp; It implements the method <TT>performService</TT>
+to retrieve the contents of an URL.</UL>
+
+<LI>
+<A HREF="Client.java">Client.java</A></LI>
+
+<BR>The client code.&nbsp; It binds to the <B>URLServiceFactoryImpl</B>
+object using a factory server name (e.g. "URL Service Factory").&nbsp;
+It then waits for user commands to create and perform services.&nbsp; The
+runTerminal method translates command line inputs into method calls to
+the server.&nbsp; One may also run the client with an input text file that
+contains multiple command lines.&nbsp; An example is in <A HREF="Test1.txt">Test1.txt</A>.</UL>
+
+<H3>
+<FONT COLOR="#FF0000">Batch Files</FONT></H3>
+
+<UL>
+<LI>
+<FONT COLOR="#000099">build.bat</FONT></LI>
+
+<BR>A batch file for building the client and server on <I>Windows</I>.&nbsp;
+It will first invoke the IDL compiler and then compile the server and client
+source codes.&nbsp; A subdirectory named "factory" will be created, which
+contains the CORBA stub and skeleton codes and their corresponding class
+files.
+<LI>
+<FONT COLOR="#000099">runsrv.bat</FONT></LI>
+
+<BR>A batch file for running the server.
+<LI>
+<FONT COLOR="#000099">client.bat</FONT></LI>
+
+<BR>A batch file for running the client.&nbsp; The command line format
+is:
+<PRE>&nbsp;&nbsp;&nbsp; <TT>client [hostname] [command.txt]</TT></PRE>
+where the optional hostname (or IP address) is where the server is running
+and <TT>command.txt</TT> is an optional input command file such as <A HREF="Test1.txt">Test1.txt</A>.</UL>
+
+<H3>
+<FONT COLOR="#FF0000">Running the Codes</FONT></H3>
+This example was developed under VisiBroker (<A HREF="../studies.htm#visibroker">link</A>).&nbsp;
+To run the codes, make sure that the VisiBroker Smart Agent (osagent) is
+running on your network. Then enter the commands:
+
+<P><I><TT>On Windows:</TT></I>
+<UL>
+<PRE><TT>start runsrv</TT></PRE>
+
+<PRE><TT>client&nbsp; </TT>(or <TT>client [hostname] [Test1.txt])</TT></PRE>
+</UL>
+<I><TT>On Unix:</TT></I>
+<UL>
+<PRE><TT>vbj Server &amp;</TT></PRE>
+
+<PRE><TT>vbj Client&nbsp; </TT>(or vbj C<TT>lient [hostname] [Test1.txt])</TT></PRE>
+</UL>
+
+<HR WIDTH="100%">
+<BR>&nbsp;
+</BODY>
+</HTML>

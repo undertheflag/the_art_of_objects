@@ -1,0 +1,10 @@
+# Input command lines for factory server
+create
+create
+showAll
+get http://yahoo.com/
+
+remove URLService1
+showAll
+
+quit

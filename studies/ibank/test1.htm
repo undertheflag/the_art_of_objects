@@ -1,0 +1,32 @@
+<HTML>
+<TITLE>Test page for ibank</TITLE>
+
+<SCRIPT>
+  // set base url
+  var baseURL = location.protocol + "//" + location.hostname + "/OODA/";
+  document.writeln("<BASE HREF='" + baseURL + "'>");
+</SCRIPT>
+
+<BODY>
+
+<H2>Test page for ibank</H2>
+
+<A HREF="ibank.Main?_c=login&username=John&password=999">login</A> <BR>
+<A HREF="ibank.Main?_c=logout">logout</A> <BR>
+<A HREF="ibank.Main?_c=help">help</A> <BR>
+
+<P>
+<B>Account Service</B><BR>
+<A HREF="ibank.Main?_a=Account&_c=balance">balance</A> <BR>
+<A HREF="ibank.Main?_a=Account&_c=history">history</A> <BR>
+<A HREF="ibank.Main?_a=Account&_c=deposit&amount=200">deposit 200</A> <BR>
+<A HREF="ibank.Main?_a=Account&_c=withdraw&amount=100">withdraw 100</A> <BR>
+<A HREF="ibank.Main?_a=Account&_c=pay&receiver=VISA&amount=20">pay VISA 20</A> <BR>
+<A HREF="ibank.Main?_a=Account&_c=transfer&accountName=Jane&amount=10">transfer 10 to Jane</A> <BR>
+<A HREF="ibank.Main?_a=Account&_c=help">account help</A> <BR>
+
+<P>
+
+</BODY>
+
+<HTML>

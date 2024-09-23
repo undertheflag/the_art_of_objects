@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding='BIG5' standalone="yes"?>
+<!-- Note: this XML file contains Chinese characters in Big5 encoding. -->
+<!-- It can be viewed with, for example, Internet Explorer 5. -->
+<electronics>
+ <resistorList>
+  <resistor>
+    <partNumber value="123" unit=""/>
+    <resistance value="5.6" unit="歐姆"/>
+    <power value="0.1" unit="瓦"/>
+    <length value="12" unit="mm"/>
+  </resistor>
+  <resistor>
+    <partNumber value="323" unit=""/>
+    <resistance value="12.6" unit="歐姆"/>
+    <power value="0.2" unit="瓦"/>
+    <length value="16" unit="mm"/>
+  </resistor>
+ </resistorList>
+ <capacitorList>
+  <capacitor>
+    <partNumber value="13" unit=""/>
+    <capacitance value="12.5" unit="法拉"/>
+    <voltage value="30" unit="伏特"/>
+  </capacitor>
+ </capacitorList>
+</electronics>
+
